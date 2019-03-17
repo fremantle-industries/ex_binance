@@ -1,4 +1,5 @@
 # ExBinance
+[![CircleCI](https://circleci.com/gh/fremantle-capital/ex_binance.svg?style=svg)](https://circleci.com/gh/fremantle-capital/ex_binance)
 
 Binance API Client for Elixir
 
