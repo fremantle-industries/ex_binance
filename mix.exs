@@ -15,7 +15,6 @@ defmodule ExBinance.MixProject do
 
   def application do
     [
-      mod: {ExBinance.Supervisor, []},
       applications: [:exconstructor, :poison, :httpoison],
       extra_applications: [:logger]
     ]

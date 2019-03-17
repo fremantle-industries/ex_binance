@@ -194,24 +194,6 @@ defmodule ExBinance do
 
   Returns `{:ok, %{}}` or `{:error, reason}`
   """
-  def order_limit_buy(symbol, quantity, price, time_in_force \\ "GTC")
-
-  def order_limit_buy(
-        %ExBinance.TradePair{from: from, to: to} = symbol,
-        quantity,
-        price,
-        time_in_force
-      )
-      when is_number(quantity)
-      when is_number(price)
-      when is_binary(from)
-      when is_binary(to) do
-    case find_symbol(symbol) do
-      {:ok, binance_symbol} -> order_limit_buy(binance_symbol, quantity, price, time_in_force)
-      e -> e
-    end
-  end
-
   def order_limit_buy(symbol, quantity, price, time_in_force)
       when is_binary(symbol)
       when is_number(quantity)
@@ -227,76 +209,12 @@ defmodule ExBinance do
 
   Returns `{:ok, %{}}` or `{:error, reason}`
   """
-  def order_limit_sell(symbol, quantity, price, time_in_force \\ "GTC")
-
-  def order_limit_sell(
-        %ExBinance.TradePair{from: from, to: to} = symbol,
-        quantity,
-        price,
-        time_in_force
-      )
-      when is_number(quantity)
-      when is_number(price)
-      when is_binary(from)
-      when is_binary(to) do
-    case find_symbol(symbol) do
-      {:ok, binance_symbol} -> order_limit_sell(binance_symbol, quantity, price, time_in_force)
-      e -> e
-    end
-  end
-
   def order_limit_sell(symbol, quantity, price, time_in_force)
       when is_binary(symbol)
       when is_number(quantity)
       when is_number(price) do
     create_order(symbol, "SELL", "LIMIT", quantity, price, time_in_force)
     |> parse_order_response
-  end
-
-  @doc """
-  Creates a new **market** **buy** order
-
-  Symbol can be a binance symbol in the form of `"ETHBTC"` or `%ExBinance.TradePair{}`.
-
-  Returns `{:ok, %{}}` or `{:error, reason}`
-  """
-  def order_market_buy(%ExBinance.TradePair{from: from, to: to} = symbol, quantity)
-      when is_number(quantity)
-      when is_binary(from)
-      when is_binary(to) do
-    case find_symbol(symbol) do
-      {:ok, binance_symbol} -> order_market_buy(binance_symbol, quantity)
-      e -> e
-    end
-  end
-
-  def order_market_buy(symbol, quantity)
-      when is_binary(symbol)
-      when is_number(quantity) do
-    create_order(symbol, "BUY", "MARKET", quantity)
-  end
-
-  @doc """
-  Creates a new **market** **sell** order
-
-  Symbol can be a binance symbol in the form of `"ETHBTC"` or `%ExBinance.TradePair{}`.
-
-  Returns `{:ok, %{}}` or `{:error, reason}`
-  """
-  def order_market_sell(%ExBinance.TradePair{from: from, to: to} = symbol, quantity)
-      when is_number(quantity)
-      when is_binary(from)
-      when is_binary(to) do
-    case find_symbol(symbol) do
-      {:ok, binance_symbol} -> order_market_sell(binance_symbol, quantity)
-      e -> e
-    end
-  end
-
-  def order_market_sell(symbol, quantity)
-      when is_binary(symbol)
-      when is_number(quantity) do
-    create_order(symbol, "SELL", "MARKET", quantity)
   end
 
   defp parse_order_response({:ok, response}) do
@@ -315,62 +233,4 @@ defmodule ExBinance do
   end
 
   defp parse_order_response({:error, _} = error), do: error
-
-  # Misc
-
-  @doc """
-  Searches and normalizes the symbol as it is listed on binance.
-
-  To retrieve this information, a request to the binance API is done. The result is then **cached** to ensure the request is done only once.
-
-  Order of which symbol comes first, and case sensitivity does not matter.
-
-  Returns `{:ok, "SYMBOL"}` if successfully, or `{:error, reason}` otherwise.
-
-  ## Examples
-  These 3 calls will result in the same result string:
-  ```
-  find_symbol(%ExBinance.TradePair{from: "ETH", to: "REQ"})
-  ```
-  ```
-  find_symbol(%ExBinance.TradePair{from: "REQ", to: "ETH"})
-  ```
-  ```
-  find_symbol(%ExBinance.TradePair{from: "rEq", to: "eTH"})
-  ```
-
-  Result: `{:ok, "REQETH"}`
-
-  """
-  def find_symbol(%ExBinance.TradePair{from: from, to: to} = tp)
-      when is_binary(from)
-      when is_binary(to) do
-    case ExBinance.SymbolCache.get() do
-      # cache hit
-      {:ok, data} ->
-        from = String.upcase(from)
-        to = String.upcase(to)
-
-        found = Enum.filter(data, &Enum.member?([from <> to, to <> from], &1))
-
-        case Enum.count(found) do
-          1 -> {:ok, found |> List.first()}
-          0 -> {:error, :symbol_not_found}
-        end
-
-      # cache miss
-      {:error, :not_initialized} ->
-        case get_all_prices() do
-          {:ok, price_data} ->
-            price_data
-            |> Enum.map(fn x -> x.symbol end)
-            |> ExBinance.SymbolCache.store()
-
-            find_symbol(tp)
-
-          err ->
-            err
-        end
-    end
-  end
 end

@@ -118,10 +118,10 @@ defmodule ExBinanceTest do
     @side side
 
     describe ".order_limit_#{side}" do
-      test "creates an order with a duration of good til cancel by default" do
-        use_cassette "order_limit_#{@side}_good_til_cancel_default_duration_success" do
+      test "can create an order with a good til cancel duration" do
+        use_cassette "order_limit_#{@side}_good_til_cancel_duration_success" do
           assert {:ok, %ExBinance.OrderResponse{} = response} =
-                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 0.1, 0.01])
+                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 0.1, 0.01, "GTC"])
 
           assert response.client_order_id != nil
           assert response.executed_qty == "0.00000000"
