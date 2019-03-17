@@ -80,28 +80,6 @@ defmodule ExBinanceTest do
     end
   end
 
-  describe ".get_ticker" do
-    test "returns a ticker struct with details for the given symbol" do
-      use_cassette "get_ticker_ok" do
-        assert {
-                 :ok,
-                 %ExBinance.Ticker{
-                   ask_price: "0.01876000",
-                   bid_price: "0.01875200",
-                   close_time: 1_521_826_338_547,
-                   count: 30612
-                 }
-               } = ExBinance.get_ticker("LTCBTC")
-      end
-    end
-
-    test "returns an error tuple when the symbol doesn't exist" do
-      use_cassette "get_ticker_error" do
-        assert ExBinance.get_ticker("IDONTEXIST") == {:error, :bad_symbol}
-      end
-    end
-  end
-
   describe ".get_depth" do
     test "returns the bids & asks up to the given depth" do
       use_cassette "get_depth_ok" do

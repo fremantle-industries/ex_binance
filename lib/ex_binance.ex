@@ -65,39 +65,6 @@ defmodule ExBinance do
   end
 
   @doc """
-  Retrieves the current ticker information for the given trade pair.
-
-  Symbol can be a binance symbol in the form of `"ETHBTC"` or `%ExBinance.TradePair{}`.
-
-  Returns `{:ok, %ExBinance.Ticker{}}` or `{:error, reason}`
-
-  ## Example
-  ```
-  {:ok,
-    %ExBinance.Ticker{ask_price: "0.07548800", bid_price: "0.07542100",
-      close_time: 1515391124878, count: 661676, first_id: 16797673,
-      high_price: "0.07948000", last_id: 17459348, last_price: "0.07542000",
-      low_price: "0.06330000", open_price: "0.06593800", open_time: 1515304724878,
-      prev_close_price: "0.06593800", price_change: "0.00948200",
-      price_change_percent: "14.380", volume: "507770.18500000",
-      weighted_avg_price: "0.06946930"}}
-  ```
-  """
-  def get_ticker(%ExBinance.TradePair{} = symbol) do
-    case find_symbol(symbol) do
-      {:ok, binance_symbol} -> get_ticker(binance_symbol)
-      e -> e
-    end
-  end
-
-  def get_ticker(symbol) when is_binary(symbol) do
-    case HTTPClient.get_binance("/api/v1/ticker/24hr?symbol=#{symbol}") do
-      {:ok, data} -> {:ok, ExBinance.Ticker.new(data)}
-      err -> err
-    end
-  end
-
-  @doc """
   Retrieves the bids & asks of the order book up to the depth for the given symbol
 
   Returns `{:ok, %{bids: [...], asks: [...], lastUpdateId: 12345}}` or `{:error, reason}`
