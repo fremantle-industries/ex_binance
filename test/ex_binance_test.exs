@@ -1,7 +1,6 @@
 defmodule ExBinanceTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  import Mock
   doctest ExBinance
 
   setup_all do
@@ -112,92 +111,4 @@ defmodule ExBinanceTest do
       end
     end
   end
-
-  [:buy, :sell]
-  |> Enum.each(fn side ->
-    @side side
-
-    describe ".order_limit_#{side}" do
-      test "can create an order with a good til cancel duration" do
-        use_cassette "order_limit_#{@side}_good_til_cancel_duration_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
-                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 0.1, 0.01, "GTC"])
-
-          assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
-          assert response.order_id != nil
-          assert response.orig_qty != nil
-          assert response.price != nil
-          assert response.side == @side |> Atom.to_string() |> String.upcase()
-          assert response.status == "NEW"
-          assert response.symbol != nil
-          assert response.time_in_force == "GTC"
-          assert response.transact_time != nil
-          assert response.type == "LIMIT"
-        end
-      end
-
-      test "can create an order with a fill or kill duration" do
-        use_cassette "order_limit_#{@side}_fill_or_kill_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
-                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 0.1, 0.01, "FOK"])
-
-          assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
-          assert response.order_id != nil
-          assert response.orig_qty != nil
-          assert response.price != nil
-          assert response.side == @side |> Atom.to_string() |> String.upcase()
-          assert response.status == "EXPIRED"
-          assert response.symbol != nil
-          assert response.time_in_force == "FOK"
-          assert response.transact_time != nil
-          assert response.type == "LIMIT"
-        end
-      end
-
-      test "can create an order with am immediate or cancel duration" do
-        use_cassette "order_limit_#{@side}_immediate_or_cancel_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
-                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 0.1, 0.01, "IOC"])
-
-          assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
-          assert response.order_id != nil
-          assert response.orig_qty != nil
-          assert response.price != nil
-          assert response.side == @side |> Atom.to_string() |> String.upcase()
-          assert response.status == "EXPIRED"
-          assert response.symbol != nil
-          assert response.time_in_force == "IOC"
-          assert response.transact_time != nil
-          assert response.type == "LIMIT"
-        end
-      end
-
-      test "returns an insufficient balance error tuple" do
-        use_cassette "order_limit_#{@side}_error_insufficient_balance" do
-          assert {:error, reason} =
-                   apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 10_000, 0.001, "FOK"])
-
-          assert reason == %ExBinance.InsufficientBalanceError{
-                   reason: %{
-                     "code" => -2010,
-                     "msg" => "Account has insufficient balance for requested action."
-                   }
-                 }
-        end
-      end
-
-      test "bubbles other errors" do
-        error = {:error, %HTTPoison.Error{reason: :timeout}}
-
-        with_mock HTTPoison,
-          post: fn _url, _body, _headers -> error end do
-          assert apply(ExBinance, :"order_limit_#{@side}", ["LTCBTC", 10_000, 0.001, "FOK"]) ==
-                   {:error, :timeout}
-        end
-      end
-    end
-  end)
 end
