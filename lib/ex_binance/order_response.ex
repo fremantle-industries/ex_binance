@@ -10,7 +10,8 @@ defmodule ExBinance.OrderResponse do
     :symbol,
     :time_in_force,
     :transact_time,
-    :type
+    :type,
+    :fills
   ]
 
   use ExConstructor
