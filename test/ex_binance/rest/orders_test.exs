@@ -102,12 +102,9 @@ defmodule ExBinance.Rest.OrdersTest do
                      "FOK"
                    )
 
-          assert reason == %ExBinance.InsufficientBalanceError{
-                   reason: %{
-                     "code" => -2010,
-                     "msg" => "Account has insufficient balance for requested action."
-                   }
-                 }
+          assert reason ==
+                   {:insufficient_balance,
+                    "Account has insufficient balance for requested action."}
         end
       end
 

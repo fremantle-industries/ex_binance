@@ -48,15 +48,8 @@ defmodule ExBinance.Rest.Orders do
     {:ok, ExBinance.OrderResponse.new(response)}
   end
 
-  defp parse_response({
-         :error,
-         {
-           :binance_error,
-           %{"code" => -2010, "msg" => "Account has insufficient balance for requested action."} =
-             reason
-         }
-       }) do
-    {:error, %ExBinance.InsufficientBalanceError{reason: reason}}
+  defp parse_response({:error, {:binance_error, %{"code" => -2010, "msg" => msg}}}) do
+    {:error, {:insufficient_balance, msg}}
   end
 
   defp parse_response({:error, _} = error), do: error
