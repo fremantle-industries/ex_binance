@@ -4,14 +4,14 @@ defmodule ExBinance.Rest.HTTPClient do
   @type timeout_error :: :timeout
   @type connect_timeout_error :: :connect_timeout
   @type http_error :: {:http_error, any}
-  @type poison_decode_error :: {:poison_decode_error, Poison.ParseError.t()}
+  @type decode_error :: {:decode_error, Jason.DecodeError.t()}
   @type bad_symbol_error :: :bad_symbol
   @type unhandled_binance_error :: {:binance_error, map}
   @type shared_errors ::
           timeout_error
           | connect_timeout_error
           | http_error
-          | poison_decode_error
+          | decode_error
           | bad_symbol_error
           | unhandled_binance_error
 
@@ -75,7 +75,7 @@ defmodule ExBinance.Rest.HTTPClient do
 
   defp parse_response({:ok, response}) do
     response.body
-    |> Poison.decode()
+    |> Jason.decode()
     |> parse_response_body
   end
 
@@ -90,5 +90,5 @@ defmodule ExBinance.Rest.HTTPClient do
   defp parse_response_body({:ok, %{"code" => -1121}}), do: {:error, :bad_symbol}
   defp parse_response_body({:ok, %{"code" => _} = reason}), do: {:error, {:binance_error, reason}}
   defp parse_response_body({:ok, _} = result), do: result
-  defp parse_response_body({:error, err}), do: {:error, {:poison_decode_error, err}}
+  defp parse_response_body({:error, err}), do: {:error, {:decode_error, err}}
 end

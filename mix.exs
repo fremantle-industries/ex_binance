@@ -14,16 +14,13 @@ defmodule ExBinance.MixProject do
   end
 
   def application do
-    [
-      applications: [:exconstructor, :poison, :httpoison],
-      extra_applications: [:logger]
-    ]
+    [extra_applications: [:logger]]
   end
 
   defp deps do
     [
       {:httpoison, "~> 1.0"},
-      {:poison, "~> 4.0.0"},
+      {:jason, "~> 1.1"},
       {:exconstructor, "~> 1.1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
