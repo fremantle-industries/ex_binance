@@ -4,7 +4,7 @@ defmodule ExBinance.Rest.Orders do
   @path "/api/v3/order"
   @receiving_window 1000
 
-  def create_order(symbol, side, type, quantity, price, time_in_force) do
+  def create_order(symbol, side, type, quantity, price, time_in_force, credentials) do
     params = %{
       symbol: symbol,
       side: side,
@@ -17,7 +17,7 @@ defmodule ExBinance.Rest.Orders do
     }
 
     @path
-    |> HTTPClient.post_binance(params)
+    |> HTTPClient.post(params, credentials)
     |> parse_response()
   end
 

@@ -2,22 +2,24 @@
   {
     "request": {
       "body": "",
-      "headers": [],
+      "headers": {
+        "X-MBX-APIKEY": "***"
+      },
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://api.binance.com/api/v1/ping?"
+      "url": "https://api.binance.com/api/v1/time?"
     },
     "response": {
       "binary": false,
-      "body": "{}",
+      "body": "{\"code\":-1101,\"msg\":\"Too many parameters; expected '0' and received '3'.\"}",
       "headers": {
-        "Date": "Fri, 23 Mar 2018 05:35:13 GMT",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json;charset=utf-8",
         "Transfer-Encoding": "chunked",
         "Connection": "keep-alive",
+        "Date": "Sat, 16 Mar 2019 23:39:28 GMT",
         "Server": "nginx",
-        "Vary": "Accept-Encoding",
+        "X-MBX-USED-WEIGHT": "1",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -27,9 +29,12 @@
         "X-WebKit-CSP": "default-src 'self'",
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
-        "Expires": "0"
+        "Expires": "0",
+        "X-Cache": "Error from cloudfront",
+        "Via": "1.1 f7a323e97f4f771e04673a04f66f786d.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "T9_8fveZHdxZRPO6uq0SSp-gDZMkK4etTpG_77fNRJXCml4MIujRqg=="
       },
-      "status_code": 200,
+      "status_code": 400,
       "type": "ok"
     }
   }

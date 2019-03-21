@@ -1,4 +1,6 @@
 defmodule ExBinance.Rest.HTTPClient do
+  @type credentials :: ExBinance.Credentials.t()
+  @type path :: String.t()
   @type header :: {key :: String.t(), value :: String.t()}
   @type config_error :: {:config_missing, String.t()}
   @type timeout_error :: :timeout
@@ -19,53 +21,47 @@ defmodule ExBinance.Rest.HTTPClient do
   @receive_window 5000
   @api_key_header "X-MBX-APIKEY"
 
-  @spec get_binance(String.t(), [header]) :: {:ok, any} | {:error, config_error | shared_errors}
-  def get_binance(url, headers \\ []) do
-    "#{@endpoint}#{url}"
+  @spec get(path, map, [header]) :: {:ok, any} | {:error, shared_errors}
+  def get(path, params, headers \\ []) do
+    query = URI.encode_query(params)
+    uri = %URI{path: path, query: query} |> URI.to_string()
+
+    [@endpoint, uri]
+    |> Path.join()
     |> HTTPoison.get(headers)
     |> parse_response
   end
 
-  def get_binance(_url, _params, nil, nil),
-    do: {:error, {:config_missing, "Secret and API key missing"}}
-
-  def get_binance(_url, _params, nil, _api_key),
-    do: {:error, {:config_missing, "Secret key missing"}}
-
-  def get_binance(_url, _params, _secret_key, nil),
-    do: {:error, {:config_missing, "API key missing"}}
-
-  def get_binance(url, params, secret_key, api_key) do
-    headers = [{@api_key_header, api_key}]
-    ts = DateTime.utc_now() |> DateTime.to_unix(:millisecond)
-
+  @spec get_auth(path, map, credentials) :: {:ok, any} | {:error, shared_errors}
+  def get_auth(path, params, credentials) do
     params =
-      Map.merge(params, %{
-        timestamp: ts,
+      params
+      |> Map.merge(%{
+        timestamp: DateTime.utc_now() |> DateTime.to_unix(:millisecond),
         recvWindow: @receive_window
       })
 
-    argument_string = URI.encode_query(params)
-    signature = sign(secret_key, argument_string)
+    query = URI.encode_query(params)
+    signature = sign(credentials.secret_key, query)
+    signed_params = params |> Map.put(:signature, signature)
+    headers = [{@api_key_header, credentials.api_key}]
 
-    get_binance("#{url}?#{argument_string}&signature=#{signature}", headers)
+    get(path, signed_params, headers)
   end
 
-  @spec post_binance(String.t(), map) :: {:ok, any} | {:error, shared_errors}
-  def post_binance(url, params) do
+  @spec post(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
+  def post(path, params, credentials) do
     argument_string =
       params
       |> Map.to_list()
       |> Enum.map(fn x -> Tuple.to_list(x) |> Enum.join("=") end)
       |> Enum.join("&")
 
-    api_key = Application.get_env(:ex_binance, :api_key)
-    secret_key = Application.get_env(:ex_binance, :secret_key)
-    signature = sign(secret_key, argument_string)
+    signature = sign(credentials.secret_key, argument_string)
     body = "#{argument_string}&signature=#{signature}"
-    headers = [{@api_key_header, api_key}]
+    headers = [{@api_key_header, credentials.api_key}]
 
-    "#{@endpoint}#{url}"
+    "#{@endpoint}#{path}"
     |> HTTPoison.post(body, headers)
     |> parse_response()
   end
