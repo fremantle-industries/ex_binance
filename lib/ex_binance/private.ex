@@ -11,6 +11,21 @@ defmodule ExBinance.Private do
     end
   end
 
-  defdelegate create_order(symbol, side, type, quantity, price, time_in_force, credentials),
-    to: ExBinance.Rest.Orders
+  defdelegate create_order(
+                symbol,
+                side,
+                type,
+                quantity,
+                price,
+                time_in_force,
+                credentials
+              ),
+              to: ExBinance.Rest.CreateOrder
+
+  defdelegate cancel_order_by_order_id(
+                symbol,
+                order_id,
+                credentials
+              ),
+              to: ExBinance.Rest.CancelOrder
 end

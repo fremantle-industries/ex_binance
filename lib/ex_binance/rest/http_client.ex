@@ -66,6 +66,32 @@ defmodule ExBinance.Rest.HTTPClient do
     |> parse_response()
   end
 
+  @spec delete(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
+  def delete(path, params, credentials) do
+    :delete
+    |> request(path, params, credentials)
+    |> parse_response()
+  end
+
+  defp request(method, path, params, credentials) do
+    argument_string =
+      params
+      |> Map.to_list()
+      |> Enum.map(fn x -> Tuple.to_list(x) |> Enum.join("=") end)
+      |> Enum.join("&")
+
+    signature = sign(credentials.secret_key, argument_string)
+    body = "#{argument_string}&signature=#{signature}"
+    headers = [{@api_key_header, credentials.api_key}]
+
+    HTTPoison.request(
+      method,
+      "#{@endpoint}#{path}",
+      body,
+      headers
+    )
+  end
+
   defp sign(secret_key, argument_string),
     do: :sha256 |> :crypto.hmac(secret_key, argument_string) |> Base.encode16()
 

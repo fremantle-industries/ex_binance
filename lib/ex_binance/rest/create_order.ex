@@ -1,4 +1,4 @@
-defmodule ExBinance.Rest.Orders do
+defmodule ExBinance.Rest.CreateOrder do
   alias ExBinance.Rest.HTTPClient
 
   @path "/api/v3/order"
@@ -21,7 +21,7 @@ defmodule ExBinance.Rest.Orders do
     |> parse_response()
   end
 
-  defp parse_response({:ok, response}), do: {:ok, ExBinance.OrderResponse.new(response)}
+  defp parse_response({:ok, response}), do: {:ok, ExBinance.CreateOrderResponse.new(response)}
 
   defp parse_response({:error, {:binance_error, %{"code" => -2010, "msg" => msg}}}),
     do: {:error, {:insufficient_balance, msg}}
