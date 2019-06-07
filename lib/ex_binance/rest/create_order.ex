@@ -1,5 +1,6 @@
 defmodule ExBinance.Rest.CreateOrder do
   alias ExBinance.Rest.HTTPClient
+  alias ExBinance.Timestamp
 
   @path "/api/v3/order"
   @receiving_window 1000
@@ -12,7 +13,7 @@ defmodule ExBinance.Rest.CreateOrder do
       quantity: quantity,
       price: price,
       timeInForce: time_in_force,
-      timestamp: :os.system_time(:millisecond),
+      timestamp: Timestamp.now(),
       recvWindow: @receiving_window
     }
 

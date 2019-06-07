@@ -1,5 +1,6 @@
 defmodule ExBinance.Rest.CancelOrder do
   alias ExBinance.Rest.HTTPClient
+  alias ExBinance.Timestamp
 
   @path "/api/v3/order"
   @receiving_window 1000
@@ -8,7 +9,7 @@ defmodule ExBinance.Rest.CancelOrder do
     params = %{
       symbol: symbol,
       orderId: order_id,
-      timestamp: :os.system_time(:millisecond),
+      timestamp: Timestamp.now(),
       recvWindow: @receiving_window
     }
 
