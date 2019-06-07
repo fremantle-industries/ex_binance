@@ -1,4 +1,4 @@
-defmodule ExBinance.PrivateTest do
+defmodule ExBinance.Private.CreateOrderTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Mock
@@ -11,13 +11,6 @@ defmodule ExBinance.PrivateTest do
     api_key: System.get_env("BINANCE_API_KEY"),
     secret_key: System.get_env("BINANCE_API_SECRET")
   }
-
-  test ".account returns an ok tuple with the account" do
-    use_cassette "private/account_ok" do
-      assert {:ok, %ExBinance.Account{} = account} = ExBinance.Private.account(@credentials)
-      assert account.update_time != nil
-    end
-  end
 
   ["BUY", "SELL"]
   |> Enum.each(fn side ->
