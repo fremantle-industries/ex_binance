@@ -19,7 +19,7 @@ defmodule ExBinance.Private.CreateOrderTest do
     describe ".create_order #{side}" do
       test "can create a good till cancel order" do
         use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
-          assert {:ok, %ExBinance.CreateOrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,
@@ -46,7 +46,7 @@ defmodule ExBinance.Private.CreateOrderTest do
 
       test "can create a fill or kill order" do
         use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
-          assert {:ok, %ExBinance.CreateOrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,
@@ -73,7 +73,7 @@ defmodule ExBinance.Private.CreateOrderTest do
 
       test "can create an immediate or cancel order" do
         use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
-          assert {:ok, %ExBinance.CreateOrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,

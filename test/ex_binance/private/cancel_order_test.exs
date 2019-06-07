@@ -19,7 +19,7 @@ defmodule ExBinance.Private.CancelOrderTest do
         assert {:ok, response} =
                  ExBinance.Private.cancel_order_by_order_id("LTCBTC", order_id, @credentials)
 
-        assert %ExBinance.CancelOrderResponse{} = response
+        assert %ExBinance.Responses.CancelOrder{} = response
         assert response.order_id == order_id
       end
     end

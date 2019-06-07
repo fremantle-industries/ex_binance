@@ -1,4 +1,4 @@
-defmodule ExBinance.CreateOrderResponse do
+defmodule ExBinance.Responses.CreateOrder do
   defstruct ~w(
     client_order_id
     executed_qty

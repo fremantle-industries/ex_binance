@@ -18,5 +18,5 @@ defmodule ExBinance.Rest.CancelOrder do
     |> parse_response()
   end
 
-  defp parse_response({:ok, response}), do: {:ok, ExBinance.CancelOrderResponse.new(response)}
+  defp parse_response({:ok, response}), do: {:ok, ExBinance.Responses.CancelOrder.new(response)}
 end
