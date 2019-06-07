@@ -23,5 +23,14 @@ defmodule ExBinance.Private.CancelOrderTest do
         assert response.order_id == order_id
       end
     end
+
+    test "returns an error tuple when the order id can't be found" do
+      use_cassette "private/cancel_order_by_order_id_error_not_found" do
+        assert {:error, {:not_found, msg}} =
+                 ExBinance.Private.cancel_order_by_order_id("LTCBTC", "12345", @credentials)
+
+        assert msg == "Unknown order sent."
+      end
+    end
   end
 end

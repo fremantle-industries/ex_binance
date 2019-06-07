@@ -19,4 +19,7 @@ defmodule ExBinance.Rest.CancelOrder do
   end
 
   defp parse_response({:ok, response}), do: {:ok, ExBinance.Responses.CancelOrder.new(response)}
+
+  defp parse_response({:error, {:binance_error, %{"code" => -2011, "msg" => msg}}}),
+    do: {:error, {:not_found, msg}}
 end
