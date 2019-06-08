@@ -11,7 +11,7 @@ by adding `binance` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_binance, "~> 0.0.2"}
+    {:ex_binance, "~> 0.0.3"}
   ]
 end
 ```
