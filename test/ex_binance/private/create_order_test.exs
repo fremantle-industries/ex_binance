@@ -1,4 +1,4 @@
-defmodule ExBinance.PrivateTest do
+defmodule ExBinance.Private.CreateOrderTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Mock
@@ -12,13 +12,6 @@ defmodule ExBinance.PrivateTest do
     secret_key: System.get_env("BINANCE_API_SECRET")
   }
 
-  test ".account returns an ok tuple with the account" do
-    use_cassette "private/account_ok" do
-      assert {:ok, %ExBinance.Account{} = account} = ExBinance.Private.account(@credentials)
-      assert account.update_time != nil
-    end
-  end
-
   ["BUY", "SELL"]
   |> Enum.each(fn side ->
     @side side
@@ -26,7 +19,7 @@ defmodule ExBinance.PrivateTest do
     describe ".create_order #{side}" do
       test "can create a good till cancel order" do
         use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,
@@ -53,7 +46,7 @@ defmodule ExBinance.PrivateTest do
 
       test "can create a fill or kill order" do
         use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,
@@ -80,7 +73,7 @@ defmodule ExBinance.PrivateTest do
 
       test "can create an immediate or cancel order" do
         use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
-          assert {:ok, %ExBinance.OrderResponse{} = response} =
+          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
                    ExBinance.Private.create_order(
                      "LTCBTC",
                      @side,
