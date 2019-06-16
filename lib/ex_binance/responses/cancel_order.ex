@@ -1,4 +1,6 @@
 defmodule ExBinance.Responses.CancelOrder do
+  @type t :: %ExBinance.Responses.CancelOrder{}
+
   defstruct ~w(
     client_order_id
     cummulative_quote_qty
