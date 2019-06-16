@@ -3,19 +3,14 @@ defmodule ExBinance.Rest.HTTPClient do
   @type path :: String.t()
   @type header :: {key :: String.t(), value :: String.t()}
   @type config_error :: {:config_missing, String.t()}
-  @type timeout_error :: :timeout
-  @type connect_timeout_error :: :connect_timeout
-  @type http_error :: {:http_error, any}
-  @type decode_error :: {:decode_error, Jason.DecodeError.t()}
-  @type bad_symbol_error :: :bad_symbol
-  @type unhandled_binance_error :: {:binance_error, map}
   @type shared_errors ::
-          timeout_error
-          | connect_timeout_error
-          | http_error
-          | decode_error
-          | bad_symbol_error
-          | unhandled_binance_error
+          :timeout
+          | :connect_timeout
+          | {:http_error, any}
+          | {:decode_error, Jason.DecodeError.t()}
+          | :bad_symbol
+          | :receive_window
+          | {:binance_error, map}
 
   @endpoint "https://api.binance.com"
   @receive_window 5000
@@ -110,6 +105,7 @@ defmodule ExBinance.Rest.HTTPClient do
   defp parse_response({:error, err}), do: {:error, {:http_error, err}}
 
   defp parse_response_body({:ok, %{"code" => -1121}}), do: {:error, :bad_symbol}
+  defp parse_response_body({:ok, %{"code" => -1021}}), do: {:error, :receive_window}
   defp parse_response_body({:ok, %{"code" => _} = reason}), do: {:error, {:binance_error, reason}}
   defp parse_response_body({:ok, _} = result), do: result
   defp parse_response_body({:error, err}), do: {:error, {:decode_error, err}}

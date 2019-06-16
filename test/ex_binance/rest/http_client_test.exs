@@ -51,4 +51,20 @@ defmodule ExBinance.Rest.HTTPClientTest do
       assert %{"canTrade" => _} = data
     end
   end
+
+  describe ".delete" do
+    test "returns an error tuple when the timestamp is outside the receive window" do
+      use_cassette "http_client/delete_error_receive_window" do
+        params = %{
+          symbol: "LTCBTC",
+          orderId: "123",
+          timestamp: ExBinance.Timestamp.now(),
+          recvWindow: 1000
+        }
+
+        assert {:error, :receive_window} =
+                 ExBinance.Rest.HTTPClient.delete("/api/v3/order", params, @credentials)
+      end
+    end
+  end
 end

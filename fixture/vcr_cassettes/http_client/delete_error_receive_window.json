@@ -1,0 +1,42 @@
+[
+  {
+    "request": {
+      "body": "orderId=123&recvWindow=1000&symbol=LTCBTC&timestamp=1560721154115&signature=***",
+      "headers": {
+        "X-MBX-APIKEY": "***"
+      },
+      "method": "delete",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.binance.com/api/v3/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"code\":-1021,\"msg\":\"Timestamp for this request is outside of the recvWindow.\"}",
+      "headers": {
+        "Content-Type": "application/json;charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Date": "Sun, 16 Jun 2019 21:39:16 GMT",
+        "Server": "nginx",
+        "X-MBX-USED-WEIGHT": "1",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Xss-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'self'",
+        "X-Content-Security-Policy": "default-src 'self'",
+        "X-WebKit-CSP": "default-src 'self'",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "X-Cache": "Error from cloudfront",
+        "Via": "1.1 617456b5ad99c756ee702b235ecfe148.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "FRA56",
+        "X-Amz-Cf-Id": "s_ds3o1hLR_MrWizUTQwawxnioLUnAHo_nQTgLY2EzQjUzAi0zh8FQ=="
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

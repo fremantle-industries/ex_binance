@@ -32,5 +32,12 @@ defmodule ExBinance.Private.CancelOrderTest do
         assert msg == "Unknown order sent."
       end
     end
+
+    test "bubbles unhandled errors" do
+      use_cassette "private/cancel_order_by_order_id_error_unhandled" do
+        assert {:error, {:binance_error, %{"code" => -9999}}} =
+                 ExBinance.Private.cancel_order_by_order_id("LTCBTC", "6789", @credentials)
+      end
+    end
   end
 end
