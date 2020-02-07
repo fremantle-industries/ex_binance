@@ -26,7 +26,7 @@ defmodule ExBinance.MixProject do
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:mock, "~> 0.3.3", only: :test},
-      {:exvcr, "~> 0.10.1", only: :test}
+      {:exvcr, "~> 0.11.0", only: :test}
     ]
   end
 
