@@ -9,7 +9,14 @@ defmodule ExBinance.MixProject do
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -26,6 +33,7 @@ defmodule ExBinance.MixProject do
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:mock, "~> 0.3.3", only: :test},
+      {:excoveralls, "~> 0.1", only: :test},
       {:exvcr, "~> 0.11.0", only: :test}
     ]
   end

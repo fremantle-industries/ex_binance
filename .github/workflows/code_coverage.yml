@@ -47,6 +47,7 @@ jobs:
       - name: Coveralls
         env:
           MIX_ENV: test
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           BINANCE_API_KEY: ${{secrets.BINANCE_API_KEY}}
           BINANCE_API_SECRET: ${{secrets.BINANCE_API_SECRET}}
         run: mix coveralls.github
