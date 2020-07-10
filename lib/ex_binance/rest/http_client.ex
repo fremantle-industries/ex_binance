@@ -12,7 +12,6 @@ defmodule ExBinance.Rest.HTTPClient do
           | :receive_window
           | {:binance_error, map}
 
-  @endpoint "https://api.binance.com"
   @receive_window 5000
   @api_key_header "X-MBX-APIKEY"
 
@@ -21,7 +20,7 @@ defmodule ExBinance.Rest.HTTPClient do
     query = URI.encode_query(params)
     uri = %URI{path: path, query: query} |> URI.to_string()
 
-    [@endpoint, uri]
+    [endpoint(), uri]
     |> Path.join()
     |> HTTPoison.get(headers)
     |> parse_response
@@ -56,7 +55,7 @@ defmodule ExBinance.Rest.HTTPClient do
     body = "#{argument_string}&signature=#{signature}"
     headers = [{@api_key_header, credentials.api_key}]
 
-    "#{@endpoint}#{path}"
+    "#{endpoint()}#{path}"
     |> HTTPoison.post(body, headers)
     |> parse_response()
   end
@@ -81,7 +80,7 @@ defmodule ExBinance.Rest.HTTPClient do
 
     HTTPoison.request(
       method,
-      "#{@endpoint}#{path}",
+      "#{endpoint()}#{path}",
       body,
       headers
     )
@@ -109,4 +108,7 @@ defmodule ExBinance.Rest.HTTPClient do
   defp parse_response_body({:ok, %{"code" => _} = reason}), do: {:error, {:binance_error, reason}}
   defp parse_response_body({:ok, _} = result), do: result
   defp parse_response_body({:error, err}), do: {:error, {:decode_error, err}}
+
+  def endpoint, do: "https://#{domain()}"
+  def domain, do: Application.get_env(:ex_binance, :domain, "api.binance.com")
 end
