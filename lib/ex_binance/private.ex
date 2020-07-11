@@ -28,4 +28,7 @@ defmodule ExBinance.Private do
                 credentials
               ),
               to: ExBinance.Rest.CancelOrder
+
+  defdelegate cancel_all_orders(symbol, credentials), to: ExBinance.Rest.CancelAllOrders
+
 end
