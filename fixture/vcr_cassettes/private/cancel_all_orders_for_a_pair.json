@@ -1,0 +1,43 @@
+[
+    {
+      "request": {
+        "body": "recvWindow=1000&symbol=LTCBTC&timestamp=1559947670714&signature=***",
+        "headers": {
+          "X-MBX-APIKEY": "***"
+        },
+        "method": "delete",
+        "options": [],
+        "request_body": "",
+        "url": "https://api.binance.com/api/v3/openOrders"
+      },
+      "response": {
+        "binary": false,
+        "body": "[\n  {\n    \"symbol\": \"BTCUSDT\",\n    \"origClientOrderId\": \"E6APeyTJvkMvLMYMqu1KQ4\",\n    \"orderId\": 11,\n    \"orderListId\": -1,\n    \"clientOrderId\": \"pXLV6Hz6mprAcVYpVMTGgx\",\n    \"price\": \"0.089853\",\n    \"origQty\": \"0.178622\",\n    \"executedQty\": \"0.000000\",\n    \"cummulativeQuoteQty\": \"0.000000\",\n    \"status\": \"CANCELED\",\n    \"timeInForce\": \"GTC\",\n    \"type\": \"LIMIT\",\n    \"side\": \"BUY\"\n  },\n  {\n    \"symbol\": \"BTCUSDT\",\n    \"origClientOrderId\": \"A3EF2HCwxgZPFMrfwbgrhv\",\n    \"orderId\": 13,\n    \"orderListId\": -1,\n    \"clientOrderId\": \"pXLV6Hz6mprAcVYpVMTGgx\",\n    \"price\": \"0.090430\",\n    \"origQty\": \"0.178622\",\n    \"executedQty\": \"0.000000\",\n    \"cummulativeQuoteQty\": \"0.000000\",\n    \"status\": \"CANCELED\",\n    \"timeInForce\": \"GTC\",\n    \"type\": \"LIMIT\",\n    \"side\": \"BUY\"\n  },\n  {\n    \"orderListId\": 1929,\n    \"contingencyType\": \"OCO\",\n    \"listStatusType\": \"ALL_DONE\",\n    \"listOrderStatus\": \"ALL_DONE\",\n    \"listClientOrderId\": \"2inzWQdDvZLHbbAmAozX2N\",\n    \"transactionTime\": 1585230948299,\n    \"symbol\": \"BTCUSDT\",\n    \"orders\": [\n      {\n        \"symbol\": \"BTCUSDT\",\n        \"orderId\": 20,\n        \"clientOrderId\": \"CwOOIPHSmYywx6jZX77TdL\"\n      },\n      {\n        \"symbol\": \"BTCUSDT\",\n        \"orderId\": 21,\n        \"clientOrderId\": \"461cPg51vQjV3zIMOXNz39\"\n      }\n    ],\n    \"orderReports\": [\n      {\n        \"symbol\": \"BTCUSDT\",\n        \"origClientOrderId\": \"CwOOIPHSmYywx6jZX77TdL\",\n        \"orderId\": 20,\n        \"orderListId\": 1929,\n        \"clientOrderId\": \"pXLV6Hz6mprAcVYpVMTGgx\",\n        \"price\": \"0.668611\",\n        \"origQty\": \"0.690354\",\n        \"executedQty\": \"0.000000\",\n        \"cummulativeQuoteQty\": \"0.000000\",\n        \"status\": \"CANCELED\",\n        \"timeInForce\": \"GTC\",\n        \"type\": \"STOP_LOSS_LIMIT\",\n        \"side\": \"BUY\",\n        \"stopPrice\": \"0.378131\",\n        \"icebergQty\": \"0.017083\"\n      },\n      {\n        \"symbol\": \"BTCUSDT\",\n        \"origClientOrderId\": \"461cPg51vQjV3zIMOXNz39\",\n        \"orderId\": 21,\n        \"orderListId\": 1929,\n        \"clientOrderId\": \"pXLV6Hz6mprAcVYpVMTGgx\",\n        \"price\": \"0.008791\",\n        \"origQty\": \"0.690354\",\n        \"executedQty\": \"0.000000\",\n        \"cummulativeQuoteQty\": \"0.000000\",\n        \"status\": \"CANCELED\",\n        \"timeInForce\": \"GTC\",\n        \"type\": \"LIMIT_MAKER\",\n        \"side\": \"BUY\",\n        \"icebergQty\": \"0.639962\"\n      }\n    ]\n  }\n]\n",
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8",
+          "Transfer-Encoding": "chunked",
+          "Connection": "keep-alive",
+          "Date": "Fri, 07 Jun 2019 22:47:50 GMT",
+          "Server": "nginx",
+          "Vary": "Accept-Encoding",
+          "X-MBX-USED-WEIGHT": "141",
+          "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+          "X-Frame-Options": "SAMEORIGIN",
+          "X-Xss-Protection": "1; mode=block",
+          "X-Content-Type-Options": "nosniff",
+          "Content-Security-Policy": "default-src 'self'",
+          "X-Content-Security-Policy": "default-src 'self'",
+          "X-WebKit-CSP": "default-src 'self'",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "X-Cache": "Miss from cloudfront",
+          "Via": "1.1 49cdeca097624936e070b73619df7da9.cloudfront.net (CloudFront)",
+          "X-Amz-Cf-Id": "5JA4M8eJi5Kg-yAYPQ62ivzp5nN3jNw-xeY97ZnZkhZS_3Qg6DyRog=="
+        },
+        "status_code": 200,
+        "type": "ok"
+      }
+    }
+  ]
+  
