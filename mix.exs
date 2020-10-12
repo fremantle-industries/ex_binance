@@ -34,7 +34,7 @@ defmodule ExBinance.MixProject do
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:mock, "~> 0.3.3", only: :test},
       {:excoveralls, "~> 0.1", only: :test},
-      {:exvcr, "~> 0.11.0", only: :test}
+      {:exvcr, "~> 0.12.1", only: :test}
     ]
   end
 
