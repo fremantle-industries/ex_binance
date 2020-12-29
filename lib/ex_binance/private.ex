@@ -21,6 +21,11 @@ defmodule ExBinance.Private do
                 credentials
               ),
               to: ExBinance.Rest.CreateOrder
+  defdelegate create_order(
+                params,
+                credentials
+              ),
+              to: ExBinance.Rest.CreateOrder
 
   defdelegate cancel_order_by_order_id(
                 symbol,
