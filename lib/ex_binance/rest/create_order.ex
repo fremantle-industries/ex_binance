@@ -22,6 +22,16 @@ defmodule ExBinance.Rest.CreateOrder do
     |> parse_response()
   end
 
+  def create_order(%{} = params, credentials) do
+    params = params
+             |> Map.put(:timestamp, Timestamp.now())
+             |> Map.put(:recvWindow, @receiving_window)
+
+    @path
+    |> HTTPClient.post(params, credentials)
+    |> parse_response()
+  end
+
   defp parse_response({:ok, response}), do: {:ok, ExBinance.Responses.CreateOrder.new(response)}
 
   defp parse_response({:error, {:binance_error, %{"code" => -2010, "msg" => msg}}}),
