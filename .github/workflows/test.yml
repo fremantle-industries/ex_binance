@@ -48,4 +48,4 @@ jobs:
         run: mix test
 
       - name: Dialyzer
-        run: mix dialyzer --halt-exit-status
+        run: mix dialyzer
