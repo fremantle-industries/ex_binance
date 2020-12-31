@@ -28,13 +28,13 @@ defmodule ExBinance.MixProject do
     [
       {:httpoison, "~> 1.0"},
       {:jason, "~> 1.1"},
-      {:exconstructor, "~> 1.1.0"},
+      {:exconstructor, "~> 1.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
-      {:mock, "~> 0.3.3", only: :test},
+      {:mock, "~> 0.3", only: :test},
       {:excoveralls, "~> 0.1", only: :test},
-      {:exvcr, "~> 0.11.0", only: :test}
+      {:exvcr, "~> 0.11", only: :test}
     ]
   end
 
