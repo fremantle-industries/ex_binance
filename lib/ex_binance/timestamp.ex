@@ -1,3 +1,3 @@
 defmodule ExBinance.Timestamp do
-  def now, do: :os.system_time(:millisecond)
+  def now(), do: System.os_time(:millisecond)
 end
