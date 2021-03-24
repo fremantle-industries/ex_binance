@@ -9,48 +9,7 @@ on:
       - '*'
 
 jobs:
-  test-lt-elixir-1-8:
-    runs-on: ubuntu-latest
-    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
-
-    strategy:
-      matrix:
-        otp: [21.x, 22.x]
-        elixir: [1.7.x]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-elixir@v1.5
-        with:
-          otp-version: ${{matrix.otp}}
-          elixir-version: ${{matrix.elixir}}
-
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            deps
-            _build/dev
-            _build/test
-          key: elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
-          restore-keys: |
-            elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-
-            elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-
-
-      - name: Install Dependencies
-        run: mix deps.get
-
-      - name: Test
-        env:
-          BINANCE_API_KEY: ${{secrets.BINANCE_API_KEY}}
-          BINANCE_API_SECRET: ${{secrets.BINANCE_API_SECRET}}
-        run: mix test
-
-      - name: Dialyzer
-        run: mix dialyzer
-
-  test-gte-elixir-1-8:
+  test:
     runs-on: ubuntu-latest
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
 
@@ -60,15 +19,15 @@ jobs:
         elixir: [1.8.x, 1.9.x, 1.10.x, 1.11.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
-      - uses: actions/setup-elixir@v1.5
+      - uses: erlef/setup-elixir@v1.6.0
         with:
           otp-version: ${{matrix.otp}}
           elixir-version: ${{matrix.elixir}}
 
       - name: Cache Dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: |
             deps
