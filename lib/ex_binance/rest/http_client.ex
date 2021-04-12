@@ -45,18 +45,8 @@ defmodule ExBinance.Rest.HTTPClient do
 
   @spec post(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
   def post(path, params, credentials) do
-    argument_string =
-      params
-      |> Map.to_list()
-      |> Enum.map(fn x -> Tuple.to_list(x) |> Enum.join("=") end)
-      |> Enum.join("&")
-
-    signature = sign(credentials.secret_key, argument_string)
-    body = "#{argument_string}&signature=#{signature}"
-    headers = [{@api_key_header, credentials.api_key}]
-
-    "#{endpoint()}#{path}"
-    |> HTTPoison.post(body, headers)
+    :post
+    |> request(path, params, credentials)
     |> parse_response()
   end
 
