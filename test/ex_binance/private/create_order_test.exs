@@ -121,7 +121,7 @@ defmodule ExBinance.Private.CreateOrderTest do
         error = {:error, %HTTPoison.Error{reason: :timeout}}
 
         with_mock HTTPoison,
-          post: fn _url, _body, _headers -> error end do
+          request: fn :post, _url, _body, _headers -> error end do
           assert ExBinance.Private.create_order(
                    "LTCBTC",
                    @side,
