@@ -76,9 +76,9 @@ defmodule ExBinance.Rest.HTTPClient do
     HTTPoison.request(method, "#{endpoint()}#{path}", body, headers)
   end
 
-  defp maybe_sign_params(params, _api_key, false), do: params
+  defp maybe_sign_params(params, _secret_key, false), do: params
 
-  defp maybe_sign_params(params, api_key, true) do
+  defp maybe_sign_params(params, secret_key, true) do
     timestamp = DateTime.utc_now() |> DateTime.to_unix(:millisecond)
 
     params =
@@ -87,7 +87,7 @@ defmodule ExBinance.Rest.HTTPClient do
       |> Map.put(:timestamp, timestamp)
 
     query_string = URI.encode_query(params)
-    signature = sign(api_key, query_string)
+    signature = sign(secret_key, query_string)
 
     Map.put(params, :signature, signature)
   end
