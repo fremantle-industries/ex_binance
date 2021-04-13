@@ -46,7 +46,7 @@ defmodule ExBinance.Rest.HTTPClient do
   @spec delete(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
   def delete(path, params, %Credentials{} = credentials) when is_map(params) do
     :delete
-    |> request(path, params, %Credentials{} = credentials)
+    |> request(path, params, credentials)
     |> parse_response()
   end
 
@@ -75,7 +75,6 @@ defmodule ExBinance.Rest.HTTPClient do
     query_string = URI.encode_query(params)
     signature = sign(credentials.api_key, query_string)
 
-    # get request
     body = params |> Map.put(:signature, signature) |> URI.encode_query()
     headers = [{@api_key_header, credentials.api_key}]
 
