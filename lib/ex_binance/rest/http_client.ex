@@ -1,5 +1,7 @@
 defmodule ExBinance.Rest.HTTPClient do
-  @type credentials :: ExBinance.Credentials.t()
+  alias ExBinance.Credentials
+
+  @type credentials :: Credentials.t()
   @type path :: String.t()
   @type header :: {key :: String.t(), value :: String.t()}
   @type config_error :: {:config_missing, String.t()}
@@ -15,8 +17,10 @@ defmodule ExBinance.Rest.HTTPClient do
   @receive_window 5000
   @api_key_header "X-MBX-APIKEY"
 
-  @spec get(path, map, [header]) :: {:ok, any} | {:error, shared_errors}
-  def get(path, params, headers \\ []) do
+  @spec get(path, map, [header] | credentials) :: {:ok, any} | {:error, shared_errors}
+  def get(path, params, headers \\ [])
+
+  def get(path, params, headers) when is_map(params) and is_list(headers) do
     query = URI.encode_query(params)
     uri = %URI{path: path, query: query} |> URI.to_string()
 
@@ -26,54 +30,62 @@ defmodule ExBinance.Rest.HTTPClient do
     |> parse_response
   end
 
-  @spec get_auth(path, map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def get_auth(path, params, credentials) do
-    params =
-      params
-      |> Map.merge(%{
-        timestamp: DateTime.utc_now() |> DateTime.to_unix(:millisecond),
-        recvWindow: @receive_window
-      })
-
-    query = URI.encode_query(params)
-    signature = sign(credentials.secret_key, query)
-    signed_params = params |> Map.put(:signature, signature)
-    headers = [{@api_key_header, credentials.api_key}]
-
-    get(path, signed_params, headers)
+  def get(path, params, %Credentials{} = credentials) when is_map(params) do
+    :get
+    |> request(path, params, credentials)
+    |> parse_response()
   end
 
   @spec post(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def post(path, params, credentials) do
+  def post(path, params, %Credentials{} = credentials) when is_map(params) do
     :post
     |> request(path, params, credentials)
     |> parse_response()
   end
 
   @spec delete(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def delete(path, params, credentials) do
+  def delete(path, params, %Credentials{} = credentials) when is_map(params) do
     :delete
+    |> request(path, params, %Credentials{} = credentials)
+    |> parse_response()
+  end
+
+  @spec put(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
+  def put(path, params, %Credentials{} = credentials) when is_map(params) do
+    :put
     |> request(path, params, credentials)
     |> parse_response()
   end
 
-  defp request(method, path, params, credentials) do
-    argument_string =
-      params
-      |> Map.to_list()
-      |> Enum.map(fn x -> Tuple.to_list(x) |> Enum.join("=") end)
-      |> Enum.join("&")
+  defp request(:get, path, params, credentials) do
+    params = add_query_params(params)
 
-    signature = sign(credentials.secret_key, argument_string)
-    body = "#{argument_string}&signature=#{signature}"
+    query_string = URI.encode_query(params)
+    signature = sign(credentials.api_key, query_string)
+
+    params = Map.put(params, :signature, signature)
     headers = [{@api_key_header, credentials.api_key}]
 
-    HTTPoison.request(
-      method,
-      "#{endpoint()}#{path}",
-      body,
-      headers
-    )
+    HTTPoison.get("#{endpoint()}#{path}", headers, params: params)
+  end
+
+  defp request(method, path, params, credentials) do
+    params = add_query_params(params)
+
+    query_string = URI.encode_query(params)
+    signature = sign(credentials.api_key, query_string)
+
+    # get request
+    body = params |> Map.put(:signature, signature) |> URI.encode_query()
+    headers = [{@api_key_header, credentials.api_key}]
+
+    HTTPoison.request(method, "#{endpoint()}#{path}", body, headers)
+  end
+
+  defp add_query_params(params) do
+    params
+    |> Map.put_new(:recvWindow, @receive_window)
+    |> Map.put(:timestamp, DateTime.utc_now() |> DateTime.to_unix(:millisecond))
   end
 
   defp sign(secret_key, argument_string),
