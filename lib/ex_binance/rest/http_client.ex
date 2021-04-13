@@ -17,10 +17,10 @@ defmodule ExBinance.Rest.HTTPClient do
   @receive_window 5000
   @api_key_header "X-MBX-APIKEY"
 
-  @spec get(path, map, [header] | credentials) :: {:ok, any} | {:error, shared_errors}
-  def get(path, params, headers \\ [])
+  @spec get(path, map, [header] | credentials, keyword) :: {:ok, any} | {:error, shared_errors}
+  def get(path, params, headers \\ [], opts \\ [])
 
-  def get(path, params, headers) when is_map(params) and is_list(headers) do
+  def get(path, params, headers, _opts) when is_map(params) and is_list(headers) do
     query = URI.encode_query(params)
     uri = %URI{path: path, query: query} |> URI.to_string()
 
@@ -30,61 +30,66 @@ defmodule ExBinance.Rest.HTTPClient do
     |> parse_response
   end
 
-  def get(path, params, %Credentials{} = credentials) when is_map(params) do
+  def get(path, params, %Credentials{} = credentials, opts) when is_map(params) do
     :get
-    |> request(path, params, credentials)
+    |> request(path, params, credentials, opts)
     |> parse_response()
   end
 
-  @spec post(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def post(path, params, %Credentials{} = credentials) when is_map(params) do
+  @spec post(String.t(), map, credentials, keyword) :: {:ok, any} | {:error, shared_errors}
+  def post(path, params, %Credentials{} = credentials, opts \\ []) when is_map(params) do
     :post
-    |> request(path, params, credentials)
+    |> request(path, params, credentials, opts)
     |> parse_response()
   end
 
-  @spec delete(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def delete(path, params, %Credentials{} = credentials) when is_map(params) do
+  @spec delete(String.t(), map, credentials, keyword) :: {:ok, any} | {:error, shared_errors}
+  def delete(path, params, %Credentials{} = credentials, opts \\ []) when is_map(params) do
     :delete
-    |> request(path, params, credentials)
+    |> request(path, params, credentials, opts)
     |> parse_response()
   end
 
-  @spec put(String.t(), map, credentials) :: {:ok, any} | {:error, shared_errors}
-  def put(path, params, %Credentials{} = credentials) when is_map(params) do
+  @spec put(String.t(), map, credentials, keyword) :: {:ok, any} | {:error, shared_errors}
+  def put(path, params, %Credentials{} = credentials, opts \\ []) when is_map(params) do
     :put
-    |> request(path, params, credentials)
+    |> request(path, params, credentials, opts)
     |> parse_response()
   end
 
-  defp request(:get, path, params, credentials) do
-    params = add_query_params(params)
+  defp request(:get, path, params, credentials, opts) do
+    signed = Keyword.get(opts, :signed, true)
+    params = maybe_sign_params(params, credentials.secret_key, signed)
 
-    query_string = URI.encode_query(params)
-    signature = sign(credentials.api_key, query_string)
-
-    params = Map.put(params, :signature, signature)
     headers = [{@api_key_header, credentials.api_key}]
 
     HTTPoison.get("#{endpoint()}#{path}", headers, params: params)
   end
 
-  defp request(method, path, params, credentials) do
-    params = add_query_params(params)
+  defp request(method, path, params, credentials, opts) do
+    signed = Keyword.get(opts, :signed, true)
+    params = maybe_sign_params(params, credentials.secret_key, signed)
 
-    query_string = URI.encode_query(params)
-    signature = sign(credentials.api_key, query_string)
-
-    body = params |> Map.put(:signature, signature) |> URI.encode_query()
+    body = URI.encode_query(params)
     headers = [{@api_key_header, credentials.api_key}]
 
     HTTPoison.request(method, "#{endpoint()}#{path}", body, headers)
   end
 
-  defp add_query_params(params) do
-    params
-    |> Map.put_new(:recvWindow, @receive_window)
-    |> Map.put(:timestamp, DateTime.utc_now() |> DateTime.to_unix(:millisecond))
+  defp maybe_sign_params(params, _api_key, false), do: params
+
+  defp maybe_sign_params(params, api_key, true) do
+    timestamp = DateTime.utc_now() |> DateTime.to_unix(:millisecond)
+
+    params =
+      params
+      |> Map.put_new(:recvWindow, @receive_window)
+      |> Map.put(:timestamp, timestamp)
+
+    query_string = URI.encode_query(params)
+    signature = sign(api_key, query_string)
+
+    Map.put(params, :signature, signature)
   end
 
   defp sign(secret_key, argument_string),
