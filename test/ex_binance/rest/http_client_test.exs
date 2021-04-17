@@ -43,10 +43,9 @@ defmodule ExBinance.Rest.HTTPClientTest do
     secret_key: System.get_env("BINANCE_API_SECRET")
   }
 
-  test ".get_auth returns an ok tuple with decoded json data for endpoints that require auth" do
+  test ".get returns an ok tuple with decoded json data for endpoints that require auth" do
     use_cassette "get_auth_ok" do
-      assert {:ok, data} =
-               ExBinance.Rest.HTTPClient.get_auth("/api/v3/account", %{}, @credentials)
+      assert {:ok, data} = ExBinance.Rest.HTTPClient.get("/api/v3/account", %{}, @credentials)
 
       assert %{"canTrade" => _} = data
     end
