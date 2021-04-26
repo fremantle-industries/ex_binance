@@ -18,17 +18,11 @@ defmodule ExBinance.Private.CreateOrderTest do
 
     describe ".create_order #{side}" do
       test "can create a good till cancel order" do
+        request = build_request(@side, "GTC")
+
         use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
           assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
-                   ExBinance.Private.create_order(
-                     "LTCBTC",
-                     @side,
-                     "LIMIT",
-                     0.1,
-                     0.01,
-                     "GTC",
-                     @credentials
-                   )
+                   ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
           assert response.executed_qty == "0.00000000"
@@ -45,17 +39,11 @@ defmodule ExBinance.Private.CreateOrderTest do
       end
 
       test "can create a fill or kill order" do
+        request = build_request(@side, "FOK")
+
         use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
           assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
-                   ExBinance.Private.create_order(
-                     "LTCBTC",
-                     @side,
-                     "LIMIT",
-                     0.1,
-                     0.01,
-                     "FOK",
-                     @credentials
-                   )
+                   ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
           assert response.executed_qty == "0.00000000"
@@ -72,17 +60,11 @@ defmodule ExBinance.Private.CreateOrderTest do
       end
 
       test "can create an immediate or cancel order" do
+        request = build_request(@side, "IOC")
+
         use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
           assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
-                   ExBinance.Private.create_order(
-                     "LTCBTC",
-                     @side,
-                     "LIMIT",
-                     0.1,
-                     0.01,
-                     "IOC",
-                     @credentials
-                   )
+                   ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
           assert response.executed_qty == "0.00000000"
@@ -99,17 +81,10 @@ defmodule ExBinance.Private.CreateOrderTest do
       end
 
       test "returns an insufficient balance error tuple" do
+        request = build_request(@side, "FOK")
+
         use_cassette "create_order_limit_#{@side}_error_insufficient_balance" do
-          assert {:error, reason} =
-                   ExBinance.Private.create_order(
-                     "LTCBTC",
-                     @side,
-                     "LIMIT",
-                     10,
-                     0.001,
-                     "FOK",
-                     @credentials
-                   )
+          assert {:error, reason} = ExBinance.Private.create_order(request, @credentials)
 
           assert reason ==
                    {:insufficient_balance,
@@ -119,21 +94,25 @@ defmodule ExBinance.Private.CreateOrderTest do
 
       test "bubbles other errors" do
         error = {:error, %HTTPoison.Error{reason: :timeout}}
+        request = build_request(@side, "FOK")
 
         with_mock HTTPoison,
           request: fn :post, _url, _body, _headers -> error end do
-          assert ExBinance.Private.create_order(
-                   "LTCBTC",
-                   @side,
-                   "LIMIT",
-                   10,
-                   0.001,
-                   "FOK",
-                   @credentials
-                 ) ==
+          assert ExBinance.Private.create_order(request, @credentials) ==
                    {:error, :timeout}
         end
       end
     end
   end)
+
+  defp build_request(side, time_in_force) do
+    %ExBinance.Rest.Requests.CreateOrderRequest{
+      symbol: "LTCBTC",
+      side: side,
+      type: "LIMIT",
+      quantity: 0.1,
+      price: 0.01,
+      time_in_force: time_in_force
+    }
+  end
 end
