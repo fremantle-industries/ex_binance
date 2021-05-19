@@ -1,5 +1,7 @@
-defmodule ExBinance.Responses.CreateOrder do
-  defstruct ~w(
+defmodule ExBinance.Rest.Responses.CreateOrderResponse do
+  @type t :: %__MODULE__{}
+
+  defstruct ~w[
     client_order_id
     executed_qty
     order_id
@@ -12,7 +14,7 @@ defmodule ExBinance.Responses.CreateOrder do
     transact_time
     type
     fills
-  )a
+  ]a
 
   use ExConstructor
 end

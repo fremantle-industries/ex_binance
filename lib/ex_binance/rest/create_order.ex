@@ -1,8 +1,9 @@
 defmodule ExBinance.Rest.CreateOrder do
-  alias ExBinance.Rest.{HTTPClient, Requests}
+  alias ExBinance.Rest.{HTTPClient, Requests, Responses}
   alias ExBinance.{Timestamp, Credentials}
 
   @type request :: Requests.CreateOrderRequest.t()
+  @type response :: Responses.CreateOrderResponse.t()
   @type params :: map
   @type credentials :: Credentials.t()
 
@@ -10,7 +11,8 @@ defmodule ExBinance.Rest.CreateOrder do
   @receiving_window 1000
 
   @spec create_order(request | params, credentials) ::
-          {:error, {:insufficient_balance, String.t()} | term}
+          {:ok, response}
+          | {:error, {:insufficient_balance, String.t()} | term}
   def create_order(%Requests.CreateOrderRequest{} = params, credentials) do
     params
     |> Map.from_struct()
@@ -39,7 +41,7 @@ defmodule ExBinance.Rest.CreateOrder do
   end
 
   defp parse_response({:ok, response}) do
-    {:ok, ExBinance.Responses.CreateOrder.new(response)}
+    {:ok, Responses.CreateOrderResponse.new(response)}
   end
 
   defp parse_response({:error, {:binance_error, %{"code" => -2010, "msg" => msg}}}) do

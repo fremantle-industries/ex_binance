@@ -19,7 +19,7 @@ defmodule ExBinance.Private.CancelAllOrdersTest do
         assert {:ok, response} = ExBinance.Private.cancel_all_orders("LTCBTC", @credentials)
 
         assert [
-                 %ExBinance.Responses.CancelOrder{
+                 %ExBinance.Rest.Responses.CancelOrderResponse{
                    client_order_id: "pXLV6Hz6mprAcVYpVMTGgx",
                    cummulative_quote_qty: "0.000000",
                    executed_qty: "0.000000",
@@ -33,7 +33,7 @@ defmodule ExBinance.Private.CancelAllOrdersTest do
                    time_in_force: "GTC",
                    type: "LIMIT"
                  },
-                 %ExBinance.Responses.CancelOrder{
+                 %ExBinance.Rest.Responses.CancelOrderResponse{
                    client_order_id: "pXLV6Hz6mprAcVYpVMTGgx",
                    cummulative_quote_qty: "0.000000",
                    executed_qty: "0.000000",

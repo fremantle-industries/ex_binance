@@ -21,7 +21,7 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "GTC")
 
         use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
-          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
+          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
@@ -42,7 +42,7 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "FOK")
 
         use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
-          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
+          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
@@ -63,7 +63,7 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "IOC")
 
         use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
-          assert {:ok, %ExBinance.Responses.CreateOrder{} = response} =
+          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil

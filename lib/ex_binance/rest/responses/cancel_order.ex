@@ -1,5 +1,5 @@
-defmodule ExBinance.Responses.CancelOrder do
-  @type t :: %ExBinance.Responses.CancelOrder{}
+defmodule ExBinance.Rest.Responses.CancelOrderResponse do
+  @type t :: %__MODULE__{}
 
   defstruct ~w(
     client_order_id
