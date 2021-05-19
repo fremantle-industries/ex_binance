@@ -1,5 +1,5 @@
 defmodule ExBinance.Rest.HTTPClient do
-  alias ExBinance.Credentials
+  alias ExBinance.{Auth, Credentials}
 
   @type credentials :: Credentials.t()
   @type path :: String.t()
@@ -87,13 +87,10 @@ defmodule ExBinance.Rest.HTTPClient do
       |> Map.put(:timestamp, timestamp)
 
     query_string = URI.encode_query(params)
-    signature = sign(secret_key, query_string)
+    signature = Auth.sign(secret_key, query_string)
 
     Map.put(params, :signature, signature)
   end
-
-  defp sign(secret_key, argument_string),
-    do: :sha256 |> :crypto.hmac(secret_key, argument_string) |> Base.encode16()
 
   defp parse_response({:ok, response}) do
     response.body
