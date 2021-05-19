@@ -9,6 +9,20 @@ defmodule ExBinance.Rest.CreateOrder do
   @path "/api/v3/order"
   @receiving_window 1000
 
+  @spec create_order(request | params, credentials) ::
+          {:error, {:insufficient_balance, String.t()} | term}
+  def create_order(%Requests.CreateOrderRequest{} = params, credentials) do
+    params
+    |> Map.from_struct()
+    |> create_order(credentials)
+  end
+
+  def create_order(params, credentials) when is_map(params) do
+    @path
+    |> HTTPClient.post(params, credentials)
+    |> parse_response()
+  end
+
   @deprecated "Use ExBinance.Rest.CreateOrder.create_order/2 instead."
   def create_order(symbol, side, type, quantity, price, time_in_force, credentials) do
     %{
@@ -22,20 +36,6 @@ defmodule ExBinance.Rest.CreateOrder do
       recvWindow: @receiving_window
     }
     |> create_order(credentials)
-  end
-
-  @spec create_order(request | params, credentials) ::
-          {:error, {:insufficient_balance, String.t()} | term}
-  def create_order(%Requests.CreateOrderRequest{} = params, credentials) do
-    params
-    |> Map.from_struct()
-    |> create_order(credentials)
-  end
-
-  def create_order(params, credentials) when is_map(params) do
-    @path
-    |> HTTPClient.post(params, credentials)
-    |> parse_response()
   end
 
   defp parse_response({:ok, response}) do
