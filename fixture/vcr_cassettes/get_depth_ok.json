@@ -10,17 +10,17 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"lastUpdateId\":825725,\"bids\":[[\"37829.85000000\",\"0.01321800\"],[\"37796.19000000\",\"0.01948400\"],[\"37700.00000000\",\"0.00052900\"],[\"37682.80000000\",\"0.02455000\"],[\"37656.75000000\",\"0.01524700\"]],\"asks\":[[\"37900.00000000\",\"0.00052800\"],[\"38000.00000000\",\"0.00052700\"],[\"38100.00000000\",\"0.00052500\"],[\"38142.26000000\",\"0.00105500\"],[\"38163.27000000\",\"0.00100000\"]]}",
+      "body": "{\"lastUpdateId\":885080,\"bids\":[[\"36041.73000000\",\"0.02774600\"],[\"35931.03000000\",\"0.02410700\"],[\"35900.47000000\",\"0.00100000\"],[\"35900.00000000\",\"0.00055600\"],[\"35863.44000000\",\"0.02086300\"]],\"asks\":[[\"36108.00000000\",\"0.02016100\"],[\"36147.27000000\",\"0.01953500\"],[\"36178.57000000\",\"0.01830000\"],[\"36192.60000000\",\"0.00111200\"],[\"36197.10000000\",\"0.01774200\"]]}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
         "Content-Length": "361",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 09:00:24 GMT",
+        "Date": "Sat, 05 Jun 2021 12:59:09 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "44",
-        "x-mbx-used-weight-1m": "44",
+        "x-mbx-used-weight": "25",
+        "x-mbx-used-weight-1m": "25",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -34,9 +34,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 19a079cfe5fbc38f063a9e46b60b00a7.cloudfront.net (CloudFront)",
+        "Via": "1.1 a411e1d9cf3f776cc77733eb0d71fb34.cloudfront.net (CloudFront)",
         "X-Amz-Cf-Pop": "LHR61-C2",
-        "X-Amz-Cf-Id": "1GPqNwIvgyhA5oZbZujB0vK4x9QA0ZeI8nHG9Gm0qn93ZdPNTRlmoQ=="
+        "X-Amz-Cf-Id": "3BF3Nw8yUOApMWEvvWozSMasGc6LzOSEj1UkxD050zX32Myk4sPtIg=="
       },
       "status_code": 200,
       "type": "ok"

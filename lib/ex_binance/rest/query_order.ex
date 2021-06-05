@@ -4,26 +4,42 @@ defmodule ExBinance.Rest.QueryOrder do
 
   @type symbol :: String.t()
   @type order_id :: String.t()
+  @type client_order_id :: String.t()
   @type credentials :: Credentials.t()
   @type response :: Responses.QueryOrderResponse.t()
   @type error_msg :: String.t()
   @type error_reason :: {:not_found, error_msg} | HTTPClient.shared_errors()
 
   @path "/api/v3/order"
-  @receiving_window 1000
+  @receiving_window 5000
 
-  @spec query_order(symbol, order_id, credentials) ::
+  @spec query_order_by_order_id(symbol, order_id, credentials) ::
           {:ok, response} | {:error, error_reason}
-  def query_order(symbol, order_id, credentials) do
+  def query_order_by_order_id(symbol, order_id, credentials) do
     params = %{
-      symbol: symbol,
-      orderId: order_id,
-      timestamp: Timestamp.now(),
-      recvWindow: @receiving_window
-    }
+                symbol: symbol,
+                orderId: order_id,
+                timestamp: Timestamp.now(),
+                recv_window: @receiving_window
+              }
 
     @path
-    |> HTTPClient.post(params, credentials)
+    |> HTTPClient.get(params, credentials)
+    |> parse_response()
+  end
+
+  @spec query_order_by_client_order_id(symbol, client_order_id, credentials) ::
+          {:ok, response} | {:error, error_reason}
+  def query_order_by_client_order_id(symbol, client_order_id, credentials) do
+    params = %{
+                symbol: symbol,
+                origClientOrderId: client_order_id,
+                timestamp: Timestamp.now(),
+                recv_window: @receiving_window
+              }
+
+    @path
+    |> HTTPClient.get(params, credentials)
     |> parse_response()
   end
 

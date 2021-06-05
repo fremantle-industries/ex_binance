@@ -13,7 +13,7 @@ defmodule ExBinance.Private.CancelOrderTest do
 
   describe ".cancel_order_by_order_id" do
     test "returns an ok tuple with the response" do
-      order_id = 165_812_252
+      order_id = 1512
 
       use_cassette "private/cancel_order_by_order_id_ok" do
         assert {:ok, response} =
@@ -33,11 +33,5 @@ defmodule ExBinance.Private.CancelOrderTest do
       end
     end
 
-    test "bubbles unhandled errors" do
-      use_cassette "private/cancel_order_by_order_id_error_unhandled" do
-        assert {:error, {:binance_error, %{"code" => -9999}}} =
-                 ExBinance.Private.cancel_order_by_order_id("LTCBTC", "6789", @credentials)
-      end
-    end
   end
 end

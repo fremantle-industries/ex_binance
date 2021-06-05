@@ -10,17 +10,17 @@
     },
     "response": {
       "binary": false,
-      "body": "[{\"symbol\":\"BNBBUSD\",\"price\":\"3243.19000000\"},{\"symbol\":\"BTCBUSD\",\"price\":\"80928.39000000\"},{\"symbol\":\"ETHBUSD\",\"price\":\"76729.05000000\"},{\"symbol\":\"LTCBUSD\",\"price\":\"1095.58000000\"},{\"symbol\":\"TRXBUSD\",\"price\":\"0.16636000\"},{\"symbol\":\"XRPBUSD\",\"price\":\"4.36990000\"},{\"symbol\":\"BNBUSDT\",\"price\":\"422.39000000\"},{\"symbol\":\"BTCUSDT\",\"price\":\"37796.19000000\"},{\"symbol\":\"ETHUSDT\",\"price\":\"2467.60000000\"},{\"symbol\":\"LTCUSDT\",\"price\":\"145.88000000\"},{\"symbol\":\"TRXUSDT\",\"price\":\"0.07768000\"},{\"symbol\":\"XRPUSDT\",\"price\":\"0.78320000\"},{\"symbol\":\"BNBBTC\",\"price\":\"0.01005400\"},{\"symbol\":\"ETHBTC\",\"price\":\"0.06750200\"},{\"symbol\":\"LTCBTC\",\"price\":\"0.00494000\"},{\"symbol\":\"TRXBTC\",\"price\":\"0.00000300\"},{\"symbol\":\"XRPBTC\",\"price\":\"0.00002720\"},{\"symbol\":\"LTCBNB\",\"price\":\"0.49000000\"},{\"symbol\":\"TRXBNB\",\"price\":\"0.00020540\"},{\"symbol\":\"XRPBNB\",\"price\":\"0.00253100\"}]",
+      "body": "[{\"symbol\":\"BNBBUSD\",\"price\":\"3243.19000000\"},{\"symbol\":\"BTCBUSD\",\"price\":\"80928.39000000\"},{\"symbol\":\"ETHBUSD\",\"price\":\"77189.42000000\"},{\"symbol\":\"LTCBUSD\",\"price\":\"1095.58000000\"},{\"symbol\":\"TRXBUSD\",\"price\":\"0.16636000\"},{\"symbol\":\"XRPBUSD\",\"price\":\"4.36990000\"},{\"symbol\":\"BNBUSDT\",\"price\":\"396.36000000\"},{\"symbol\":\"BTCUSDT\",\"price\":\"36035.76000000\"},{\"symbol\":\"ETHUSDT\",\"price\":\"2418.49000000\"},{\"symbol\":\"LTCUSDT\",\"price\":\"166.17000000\"},{\"symbol\":\"TRXUSDT\",\"price\":\"0.07768000\"},{\"symbol\":\"XRPUSDT\",\"price\":\"0.78320000\"},{\"symbol\":\"BNBBTC\",\"price\":\"0.01005400\"},{\"symbol\":\"ETHBTC\",\"price\":\"0.06750200\"},{\"symbol\":\"LTCBTC\",\"price\":\"0.01000000\"},{\"symbol\":\"TRXBTC\",\"price\":\"0.00000300\"},{\"symbol\":\"XRPBTC\",\"price\":\"0.00002720\"},{\"symbol\":\"LTCBNB\",\"price\":\"0.49000000\"},{\"symbol\":\"TRXBNB\",\"price\":\"0.00020540\"},{\"symbol\":\"XRPBNB\",\"price\":\"0.00253100\"}]",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
         "Content-Length": "858",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 09:00:17 GMT",
+        "Date": "Sat, 05 Jun 2021 12:59:02 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "22",
-        "x-mbx-used-weight-1m": "22",
+        "x-mbx-used-weight": "12",
+        "x-mbx-used-weight-1m": "12",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -34,9 +34,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 19a079cfe5fbc38f063a9e46b60b00a7.cloudfront.net (CloudFront)",
+        "Via": "1.1 a411e1d9cf3f776cc77733eb0d71fb34.cloudfront.net (CloudFront)",
         "X-Amz-Cf-Pop": "LHR61-C2",
-        "X-Amz-Cf-Id": "OAO3y-t3tuOLYYssWwWgXIS--Nd2wSKcmCMnDe8qHkWVBfBaVqZLZA=="
+        "X-Amz-Cf-Id": "V3MMhj9HvKvK8fqqFZIfele2VlDrTR_lKK5yScXFpNZ6XleL_8GLLQ=="
       },
       "status_code": 200,
       "type": "ok"

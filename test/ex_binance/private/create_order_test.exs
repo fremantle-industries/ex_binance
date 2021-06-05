@@ -67,12 +67,12 @@ defmodule ExBinance.Private.CreateOrderTest do
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
+          assert response.executed_qty == "10.00000000"
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
           assert response.side == @side
-          assert response.status == "EXPIRED"
+          assert response.status == "FILLED"
           assert response.symbol != nil
           assert response.time_in_force == "IOC"
           assert response.transact_time != nil
@@ -80,15 +80,19 @@ defmodule ExBinance.Private.CreateOrderTest do
         end
       end
 
-      test "returns an insufficient balance error tuple" do
-        request = build_request(@side, "FOK")
+      test "returns a rejected order error" do
+        request = build_request(@side, "GTC", "TEST-NEW-ORDER-#{@side}")
 
-        use_cassette "create_order_limit_#{@side}_error_insufficient_balance" do
+        use_cassette "create_first_order_limit_#{@side}" do
+          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = _response} =
+            ExBinance.Private.create_order(request, @credentials)
+        end
+
+        use_cassette "create_second_same_order_limit_#{@side}" do
           assert {:error, reason} = ExBinance.Private.create_order(request, @credentials)
-
           assert reason ==
-                   {:insufficient_balance,
-                    "Account has insufficient balance for requested action."}
+            {:new_order_rejected,
+              "Duplicate order sent."}
         end
       end
 
@@ -105,12 +109,13 @@ defmodule ExBinance.Private.CreateOrderTest do
     end
   end)
 
-  defp build_request(side, time_in_force) do
+  defp build_request(side, time_in_force, client_order_id \\ nil) do
     %ExBinance.Rest.Requests.CreateOrderRequest{
+      new_client_order_id: client_order_id,
       symbol: "LTCBTC",
       side: side,
       type: "LIMIT",
-      quantity: 0.1,
+      quantity: 10,
       price: 0.01,
       time_in_force: time_in_force
     }

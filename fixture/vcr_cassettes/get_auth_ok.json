@@ -12,16 +12,17 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"code\":-1022,\"msg\":\"Signature for this request is not valid.\"}",
+      "body": "{\"makerCommission\":0,\"takerCommission\":0,\"buyerCommission\":0,\"sellerCommission\":0,\"canTrade\":true,\"canWithdraw\":false,\"canDeposit\":false,\"updateTime\":1622537049904,\"accountType\":\"SPOT\",\"balances\":[{\"asset\":\"BNB\",\"free\":\"1000.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"BTC\",\"free\":\"1.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"BUSD\",\"free\":\"10000.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"ETH\",\"free\":\"100.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"LTC\",\"free\":\"500.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"TRX\",\"free\":\"500000.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"USDT\",\"free\":\"10000.00000000\",\"locked\":\"0.00000000\"},{\"asset\":\"XRP\",\"free\":\"50000.00000000\",\"locked\":\"0.00000000\"}],\"permissions\":[\"SPOT\"]}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "63",
+        "Content-Length": "711",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 09:00:13 GMT",
+        "Date": "Sat, 05 Jun 2021 10:06:02 GMT",
         "Server": "nginx",
+        "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "19",
-        "x-mbx-used-weight-1m": "19",
+        "x-mbx-used-weight": "10",
+        "x-mbx-used-weight-1m": "10",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -32,12 +33,14 @@
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
         "Expires": "0",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 19a079cfe5fbc38f063a9e46b60b00a7.cloudfront.net (CloudFront)",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 cccbced9d09951cf2e947066c4fc2442.cloudfront.net (CloudFront)",
         "X-Amz-Cf-Pop": "LHR61-C2",
-        "X-Amz-Cf-Id": "Sxvx4t85dvKgzd9Brn0oeeHXylM_UmmUd_LhDy8px3lDE4Fp8mdTlQ=="
+        "X-Amz-Cf-Id": "gf6LFlBM40c7zIcPrZu4vZ3KWjsozlKUyUJZmE9ai61uq-M2SRwR5A=="
       },
-      "status_code": 400,
+      "status_code": 200,
       "type": "ok"
     }
   }

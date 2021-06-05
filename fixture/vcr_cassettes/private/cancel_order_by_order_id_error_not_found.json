@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "orderId=12345&recvWindow=1000&symbol=LTCBTC&timestamp=1559951816789&signature=***",
+      "body": "orderId=12345&recvWindow=5000&signature=***&symbol=LTCBTC&timestamp=1622900781334",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
@@ -14,12 +14,14 @@
       "binary": false,
       "body": "{\"code\":-2011,\"msg\":\"Unknown order sent.\"}",
       "headers": {
-        "Content-Type": "application/json;charset=utf-8",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "42",
         "Connection": "keep-alive",
-        "Date": "Fri, 07 Jun 2019 23:56:57 GMT",
+        "Date": "Sat, 05 Jun 2021 13:46:22 GMT",
         "Server": "nginx",
-        "X-MBX-USED-WEIGHT": "151",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "2",
+        "x-mbx-used-weight-1m": "2",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -31,8 +33,9 @@
         "Pragma": "no-cache",
         "Expires": "0",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 b838ef1ff22a4a994af82d5178c30e1d.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "p1phU6eqr-kjmZCtOq-9XmJ0IixxYfSglD27bXIJ_h1hIZMOCWj9rg=="
+        "Via": "1.1 d2322e4264977966de69a888b2e0eba9.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "hZvEpLZmf6I49C3iFJzrXmNOwGGU-MapFPlOj-1XxVH0Y1quwCcYTQ=="
       },
       "status_code": 400,
       "type": "ok"

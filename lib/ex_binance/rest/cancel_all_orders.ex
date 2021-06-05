@@ -14,9 +14,7 @@ defmodule ExBinance.Rest.CancelAllOrders do
   @spec cancel_all_orders(symbol, credentials) :: {:ok, response} | {:error, error_reason}
   def cancel_all_orders(symbol, credentials) do
     params = %{
-      symbol: symbol,
-      timestamp: Timestamp.now(),
-      recvWindow: @receiving_window
+      symbol: symbol
     }
 
     @path

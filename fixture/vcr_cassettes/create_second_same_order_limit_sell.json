@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "new_client_order_id=&price=0.01&quantity=0.1&quote_order_qty=&recvWindow=5000&recv_window=&side=SELL&signature=***&stop_price=&symbol=LTCBTC&time_in_force=FOK&timestamp=1622883605417&type=LIMIT",
+      "body": "newClientOrderId=TEST-NEW-ORDER-SELL&price=0.01&quantity=10&recvWindow=5000&side=SELL&signature=***&symbol=LTCBTC&timeInForce=GTC&timestamp=1622902535241&type=LIMIT",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
@@ -12,16 +12,17 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"code\":-1104,\"msg\":\"Not all sent parameters were read; read '8' parameter(s) but was sent '13'.\"}",
+      "body": "{\"code\":-2010,\"msg\":\"Duplicate order sent.\"}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "98",
+        "Content-Length": "44",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 09:00:06 GMT",
+        "Date": "Sat, 05 Jun 2021 14:15:36 GMT",
         "Server": "nginx",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "5",
-        "x-mbx-used-weight-1m": "5",
+        "x-mbx-used-weight": "2",
+        "x-mbx-used-weight-1m": "2",
+        "x-mbx-order-count-1d": "45",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -33,9 +34,9 @@
         "Pragma": "no-cache",
         "Expires": "0",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 b6a92d65d66a7dd6d685a94e79bd1aba.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "LHR61-C2",
-        "X-Amz-Cf-Id": "82LWR1kPLNYZ30MU92hT3PScMbLKxTTEmZ4cUry-urVXFcILJOZjLg=="
+        "Via": "1.1 4b3bed207ec72204ebc89ae818e573ef.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "wb2_29bRrukwypOnCK1AuhKzKdeCOzcpjzI8GP9CShNig215AaZwRw=="
       },
       "status_code": 400,
       "type": "ok"
