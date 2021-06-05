@@ -83,14 +83,39 @@ defmodule ExBinance.Rest.HTTPClient do
 
     params =
       params
-      |> Map.put_new(:recvWindow, @receive_window)
+      |> Enum.filter(fn {_, v} -> v != nil end)
+      |> Enum.into(%{})
       |> Map.put(:timestamp, timestamp)
+      |> maybe_add_new_client_order_id()
+      |> maybe_add_time_in_force()
+      |> maybe_add_recv_window()
 
     query_string = URI.encode_query(params)
     signature = Auth.sign(secret_key, query_string)
 
     Map.put(params, :signature, signature)
   end
+
+  defp maybe_add_time_in_force(%{:time_in_force => time_in_force} = params) do
+    Map.delete(params, :time_in_force)
+    |> Map.put(:timeInForce, time_in_force)
+  end
+
+  defp maybe_add_time_in_force(params), do: params
+
+  defp maybe_add_recv_window(%{:recv_window => recv_window} = params) do
+    Map.delete(params, :recv_window)
+    |> Map.put(:recvWindow, recv_window)
+  end
+
+  defp maybe_add_recv_window(params), do: Map.put_new(params, :recvWindow, @receive_window)
+
+  defp maybe_add_new_client_order_id(%{:new_client_order_id => new_client_order_id} = params) do
+    Map.delete(params, :new_client_order_id)
+    |> Map.put(:newClientOrderId, new_client_order_id)
+  end
+
+  defp maybe_add_new_client_order_id(params), do: params
 
   defp parse_response({:ok, response}) do
     response.body

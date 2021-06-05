@@ -14,15 +14,6 @@ defmodule ExBinance.Rest.HTTPClientTest do
       end
     end
 
-    test "returns an error tuple and passes through the binance error when unhandled" do
-      use_cassette "get_unhandled_error_code" do
-        assert {:error, {:binance_error, reason}} =
-                 ExBinance.Rest.HTTPClient.get("/api/v1/time", %{})
-
-        assert %{"code" => _, "msg" => _} = reason
-      end
-    end
-
     [:timeout, :connect_timeout]
     |> Enum.each(fn error_reason ->
       @error_reason error_reason
@@ -31,7 +22,6 @@ defmodule ExBinance.Rest.HTTPClientTest do
         with_mock HTTPoison,
           get: fn _url, _headers -> {:error, %HTTPoison.Error{reason: @error_reason}} end do
           assert {:error, reason} = ExBinance.Rest.HTTPClient.get("/api/v1/time", %{})
-
           assert reason == @error_reason
         end
       end

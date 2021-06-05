@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "orderId=165812252&recvWindow=1000&symbol=LTCBTC&timestamp=1559947670714&signature=***",
+      "body": "orderId=1512&recvWindow=5000&signature=***&symbol=LTCBTC&timestamp=1622902591188",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
@@ -12,15 +12,17 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"symbol\":\"LTCBTC\",\"origClientOrderId\":\"web_6a24a028a1ae43879fd7e3d0e89149b5\",\"orderId\":165812252,\"clientOrderId\":\"auPD6VVKXeiJ9E2tKeKk3o\",\"price\":\"0.02464000\",\"origQty\":\"2.10000000\",\"executedQty\":\"0.00000000\",\"cummulativeQuoteQty\":\"0.00000000\",\"status\":\"CANCELED\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"SELL\"}",
+      "body": "{\"symbol\":\"LTCBTC\",\"origClientOrderId\":\"TEST-NEW-ORDER-BUY\",\"orderId\":1512,\"orderListId\":-1,\"clientOrderId\":\"XdalgxOTG5uxxcvRyCy6iS\",\"price\":\"0.01000000\",\"origQty\":\"10.00000000\",\"executedQty\":\"9.90000000\",\"cummulativeQuoteQty\":\"0.09900000\",\"status\":\"CANCELED\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\"}",
       "headers": {
-        "Content-Type": "application/json;charset=utf-8",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "308",
         "Connection": "keep-alive",
-        "Date": "Fri, 07 Jun 2019 22:47:50 GMT",
+        "Date": "Sat, 05 Jun 2021 14:16:33 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
-        "X-MBX-USED-WEIGHT": "141",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "1",
+        "x-mbx-used-weight-1m": "1",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -31,9 +33,12 @@
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
         "Expires": "0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 49cdeca097624936e070b73619df7da9.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "5JA4M8eJi5Kg-yAYPQ62ivzp5nN3jNw-xeY97ZnZkhZS_3Qg6DyRog=="
+        "Via": "1.1 38f6d324a75dff585b0ce25920fd4bda.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "qVPgrWo8XYMZ7JZB-XW6z6OIlT5JIlGRzgYInyTekZpUQUIlZvGyWg=="
       },
       "status_code": 200,
       "type": "ok"

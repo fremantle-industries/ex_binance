@@ -1,29 +1,28 @@
 [
   {
     "request": {
-      "body": "newClientOrderId=TEST-ORDER-FOR-QUERY&price=0.01&quantity=0.1&recvWindow=5000&side=BUY&signature=***&symbol=LTCBTC&timeInForce=GTC&timestamp=1622903015893&type=LIMIT",
+      "body": "",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
-      "method": "post",
+      "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://testnet.binance.vision/api/v3/order"
+      "url": "https://testnet.binance.vision/api/v3/order?orderId=1512&recvWindow=5000&signature=***&symbol=LTCBTC&timestamp=1622903868600"
     },
     "response": {
       "binary": false,
-      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1536,\"orderListId\":-1,\"clientOrderId\":\"TEST-ORDER-FOR-QUERY\",\"transactTime\":1622903017662,\"price\":\"0.01000000\",\"origQty\":\"0.10000000\",\"executedQty\":\"0.00000000\",\"cummulativeQuoteQty\":\"0.00000000\",\"status\":\"NEW\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"fills\":[]}",
+      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1512,\"orderListId\":-1,\"clientOrderId\":\"TEST-NEW-ORDER-BUY\",\"price\":\"0.01000000\",\"origQty\":\"10.00000000\",\"executedQty\":\"9.90000000\",\"cummulativeQuoteQty\":\"0.09900000\",\"status\":\"CANCELED\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"stopPrice\":\"0.00000000\",\"icebergQty\":\"0.00000000\",\"time\":1622902539988,\"updateTime\":1622902593412,\"isWorking\":true,\"origQuoteOrderQty\":\"0.00000000\"}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "299",
+        "Content-Length": "412",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 14:23:37 GMT",
+        "Date": "Sat, 05 Jun 2021 14:37:50 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "1",
-        "x-mbx-used-weight-1m": "1",
-        "x-mbx-order-count-1d": "56",
+        "x-mbx-used-weight": "2",
+        "x-mbx-used-weight-1m": "2",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -37,9 +36,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 1d1fb1f8e5e923ef7208b5a427d25d5d.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "AMS54-C1",
-        "X-Amz-Cf-Id": "fSDqt1A9p-NyjgQfPk50t_WOCSxodZ7OAj8QwHiDOGP8wJnjfbl36g=="
+        "Via": "1.1 b17ae12a9b26d355791fb59ca965e383.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "LHR61-C2",
+        "X-Amz-Cf-Id": "wB72hZXmK_CF1yqam1FF8lgZt8zJACZ4POZbcT_9C3_nowho8cfUKQ=="
       },
       "status_code": 200,
       "type": "ok"

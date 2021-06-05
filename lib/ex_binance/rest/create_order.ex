@@ -8,11 +8,11 @@ defmodule ExBinance.Rest.CreateOrder do
   @type credentials :: Credentials.t()
 
   @path "/api/v3/order"
-  @receiving_window 1000
+  @receiving_window 5000
 
   @spec create_order(request | params, credentials) ::
           {:ok, response}
-          | {:error, {:insufficient_balance, String.t()} | term}
+          | {:error, {:new_order_rejected, String.t()} | term}
   def create_order(%Requests.CreateOrderRequest{} = params, credentials) do
     params
     |> Map.from_struct()
@@ -35,7 +35,7 @@ defmodule ExBinance.Rest.CreateOrder do
       price: price,
       timeInForce: time_in_force,
       timestamp: Timestamp.now(),
-      recvWindow: @receiving_window
+      recv_window: @receiving_window
     }
     |> create_order(credentials)
   end
@@ -45,7 +45,7 @@ defmodule ExBinance.Rest.CreateOrder do
   end
 
   defp parse_response({:error, {:binance_error, %{"code" => -2010, "msg" => msg}}}) do
-    {:error, {:insufficient_balance, msg}}
+    {:error, {:new_order_rejected, msg}}
   end
 
   defp parse_response({:error, _} = error), do: error

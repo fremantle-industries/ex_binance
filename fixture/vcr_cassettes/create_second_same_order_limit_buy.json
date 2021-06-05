@@ -1,25 +1,28 @@
 [
   {
     "request": {
-      "body": "orderId=6789&recvWindow=1000&symbol=LTCBTC&timestamp=1559951816789&signature=***",
+      "body": "newClientOrderId=TEST-NEW-ORDER-BUY&price=0.01&quantity=10&recvWindow=5000&side=BUY&signature=***&symbol=LTCBTC&timeInForce=GTC&timestamp=1622902540268&type=LIMIT",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
-      "method": "delete",
+      "method": "post",
       "options": [],
       "request_body": "",
       "url": "https://testnet.binance.vision/api/v3/order"
     },
     "response": {
       "binary": false,
-      "body": "{\"code\":-9999,\"msg\":\"Unhandled error.\"}",
+      "body": "{\"code\":-2010,\"msg\":\"Duplicate order sent.\"}",
       "headers": {
-        "Content-Type": "application/json;charset=utf-8",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "44",
         "Connection": "keep-alive",
-        "Date": "Fri, 07 Jun 2019 23:56:57 GMT",
+        "Date": "Sat, 05 Jun 2021 14:15:41 GMT",
         "Server": "nginx",
-        "X-MBX-USED-WEIGHT": "151",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "4",
+        "x-mbx-used-weight-1m": "4",
+        "x-mbx-order-count-1d": "47",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -31,8 +34,9 @@
         "Pragma": "no-cache",
         "Expires": "0",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 b838ef1ff22a4a994af82d5178c30e1d.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "p1phU6eqr-kjmZCtOq-9XmJ0IixxYfSglD27bXIJ_h1hIZMOCWj9rg=="
+        "Via": "1.1 4b3bed207ec72204ebc89ae818e573ef.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "LA0HqUfKlyzYl8VDqrzf9DwKXllvXXqjpGKH4JXcOjeR4zKMxnqFzg=="
       },
       "status_code": 400,
       "type": "ok"
