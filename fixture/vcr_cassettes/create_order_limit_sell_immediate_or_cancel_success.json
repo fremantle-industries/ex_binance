@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "price=50000&quantity=0.001&recvWindow=1000&side=SELL&symbol=BTCUSDT&timeInForce=IOC&timestamp=1527291410866&type=LIMIT&signature=***",
+      "body": "new_client_order_id=&price=0.01&quantity=0.1&quote_order_qty=&recvWindow=5000&recv_window=&side=SELL&signature=***&stop_price=&symbol=LTCBTC&time_in_force=IOC&timestamp=1622883598044&type=LIMIT",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
@@ -12,14 +12,16 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"symbol\":\"BTCUSDT\",\"orderId\":108279070,\"clientOrderId\":\"roSkLhwX9KCgYqr4yFPx1V\",\"transactTime\":1527291411088,\"price\":\"50000.00000000\",\"origQty\":\"0.00100000\",\"executedQty\":\"0.00000000\",\"status\":\"EXPIRED\",\"timeInForce\":\"IOC\",\"type\":\"LIMIT\",\"side\":\"SELL\"}",
+      "body": "{\"code\":-1104,\"msg\":\"Not all sent parameters were read; read '8' parameter(s) but was sent '13'.\"}",
       "headers": {
-        "Content-Type": "application/json",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "98",
         "Connection": "keep-alive",
-        "Date": "Fri, 25 May 2018 23:36:51 GMT",
+        "Date": "Sat, 05 Jun 2021 08:59:58 GMT",
         "Server": "nginx",
-        "Vary": "Accept-Encoding",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "3",
+        "x-mbx-used-weight-1m": "3",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -30,11 +32,12 @@
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
         "Expires": "0",
-        "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 51f2e50a0d2a5ee1d9c830bf417b2713.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "BX8-X-VXYRrjfwPJ8H-Gx4sgVhcoBDZ7WlOiWn-u0SWuW2h0e5Rhpw=="
+        "X-Cache": "Error from cloudfront",
+        "Via": "1.1 b6a92d65d66a7dd6d685a94e79bd1aba.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "LHR61-C2",
+        "X-Amz-Cf-Id": "aXmkX960W8PUU4TfrAtIBj6uBhEm6zmaBiRKhIZEr1iAdgHpoVlPmw=="
       },
-      "status_code": 200,
+      "status_code": 400,
       "type": "ok"
     }
   }

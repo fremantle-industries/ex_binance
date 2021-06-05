@@ -2,9 +2,7 @@
   {
     "request": {
       "body": "",
-      "headers": {
-        "X-MBX-APIKEY": "***"
-      },
+      "headers": [],
       "method": "get",
       "options": [],
       "request_body": "",
@@ -12,14 +10,16 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"code\":-1101,\"msg\":\"Too many parameters; expected '0' and received '3'.\"}",
+      "body": "{\"serverTime\":1622883612777}",
       "headers": {
-        "Content-Type": "application/json;charset=utf-8",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "28",
         "Connection": "keep-alive",
-        "Date": "Sat, 16 Mar 2019 23:39:28 GMT",
+        "Date": "Sat, 05 Jun 2021 09:00:12 GMT",
         "Server": "nginx",
-        "X-MBX-USED-WEIGHT": "1",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "9",
+        "x-mbx-used-weight-1m": "9",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -30,11 +30,14 @@
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
         "Expires": "0",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 f7a323e97f4f771e04673a04f66f786d.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "T9_8fveZHdxZRPO6uq0SSp-gDZMkK4etTpG_77fNRJXCml4MIujRqg=="
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 19a079cfe5fbc38f063a9e46b60b00a7.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "LHR61-C2",
+        "X-Amz-Cf-Id": "Ka6Mlqaphkqr9znK576M45JqCw2aBXCOfRjGwZl3gq8GcAo20NGHRQ=="
       },
-      "status_code": 400,
+      "status_code": 200,
       "type": "ok"
     }
   }
