@@ -12,6 +12,9 @@ defmodule ExBinance.Private.CreateOrderTest do
     secret_key: System.get_env("BINANCE_API_SECRET")
   }
 
+  @quantity 1
+  @price 0.01
+
   ["BUY", "SELL"]
   |> Enum.each(fn side ->
     @side side
@@ -25,12 +28,13 @@ defmodule ExBinance.Private.CreateOrderTest do
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
+          assert response.executed_qty ==
+            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
           assert response.side == @side
-          assert response.status == "NEW"
+          assert response.status == "FILLED" or response.status == "NEW"
           assert response.symbol != nil
           assert response.time_in_force == "GTC"
           assert response.transact_time != nil
@@ -46,12 +50,13 @@ defmodule ExBinance.Private.CreateOrderTest do
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
-          assert response.executed_qty == "0.00000000"
+          assert response.executed_qty ==
+            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
           assert response.side == @side
-          assert response.status == "EXPIRED"
+          assert response.status == "FILLED" or response.status == "EXPIRED"
           assert response.symbol != nil
           assert response.time_in_force == "FOK"
           assert response.transact_time != nil
@@ -67,32 +72,17 @@ defmodule ExBinance.Private.CreateOrderTest do
                    ExBinance.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
-          assert response.executed_qty == "10.00000000"
+          assert response.executed_qty ==
+            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
           assert response.side == @side
-          assert response.status == "FILLED"
+          assert response.status == "FILLED" or response.status == "EXPIRED"
           assert response.symbol != nil
           assert response.time_in_force == "IOC"
           assert response.transact_time != nil
           assert response.type == "LIMIT"
-        end
-      end
-
-      test "returns a rejected order error" do
-        request = build_request(@side, "GTC", "TEST-NEW-ORDER-#{@side}")
-
-        use_cassette "create_first_order_limit_#{@side}" do
-          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = _response} =
-            ExBinance.Private.create_order(request, @credentials)
-        end
-
-        use_cassette "create_second_same_order_limit_#{@side}" do
-          assert {:error, reason} = ExBinance.Private.create_order(request, @credentials)
-          assert reason ==
-            {:new_order_rejected,
-              "Duplicate order sent."}
         end
       end
 
@@ -115,8 +105,8 @@ defmodule ExBinance.Private.CreateOrderTest do
       symbol: "LTCBTC",
       side: side,
       type: "LIMIT",
-      quantity: 10,
-      price: 0.01,
+      quantity: @quantity,
+      price: @price,
       time_in_force: time_in_force
     }
   end

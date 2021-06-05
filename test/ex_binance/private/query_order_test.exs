@@ -32,12 +32,13 @@ defmodule ExBinance.Private.QueryOrderTest do
                   ExBinance.Private.create_order(new_order_req, @credentials)
 
         assert create_order_response.client_order_id == @client_order_id
-        assert create_order_response.executed_qty == "0.00000000"
+        assert create_order_response.executed_qty ==
+          if create_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000"
         assert create_order_response.order_id != nil
         assert create_order_response.orig_qty != nil
         assert create_order_response.price != nil
         assert create_order_response.side == "BUY"
-        assert create_order_response.status == "NEW"
+        assert create_order_response.status == "FILLED" or create_order_response.status == "NEW"
         assert create_order_response.symbol != nil
         assert create_order_response.time_in_force == "GTC"
         assert create_order_response.transact_time != nil
@@ -54,17 +55,17 @@ defmodule ExBinance.Private.QueryOrderTest do
           )
 
         assert query_order_response.client_order_id == @client_order_id
-        assert query_order_response.executed_qty == "0.00000000"
+        assert query_order_response.executed_qty ==
+          if query_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000"
         assert query_order_response.order_id != nil
         assert query_order_response.orig_qty == "0.10000000"
         assert query_order_response.price != nil
         assert query_order_response.side == "BUY"
-        assert query_order_response.status == "NEW"
+        assert query_order_response.status == "FILLED" or query_order_response.status == "NEW"
         assert query_order_response.symbol == "LTCBTC"
         assert query_order_response.time_in_force == "GTC"
         assert query_order_response.type == "LIMIT"
         assert query_order_response.order_list_id == -1
-        assert query_order_response.cummulative_quote_qty == "0.00000000"
         assert query_order_response.stop_price == "0.00000000"
         assert query_order_response.iceberg_qty == "0.00000000"
         assert query_order_response.time != nil

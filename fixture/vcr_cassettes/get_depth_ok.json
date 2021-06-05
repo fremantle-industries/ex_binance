@@ -10,17 +10,17 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"lastUpdateId\":885080,\"bids\":[[\"36041.73000000\",\"0.02774600\"],[\"35931.03000000\",\"0.02410700\"],[\"35900.47000000\",\"0.00100000\"],[\"35900.00000000\",\"0.00055600\"],[\"35863.44000000\",\"0.02086300\"]],\"asks\":[[\"36108.00000000\",\"0.02016100\"],[\"36147.27000000\",\"0.01953500\"],[\"36178.57000000\",\"0.01830000\"],[\"36192.60000000\",\"0.00111200\"],[\"36197.10000000\",\"0.01774200\"]]}",
+      "body": "{\"lastUpdateId\":929038,\"bids\":[[\"36125.92000000\",\"0.01384100\"],[\"36100.00000000\",\"0.00055300\"],[\"36000.00000000\",\"0.00055500\"],[\"35918.85000000\",\"0.00297200\"],[\"35900.00000000\",\"0.00055600\"]],\"asks\":[[\"36207.00000000\",\"0.00122500\"],[\"36243.41000000\",\"0.02166500\"],[\"36279.00000000\",\"0.00066600\"],[\"36300.00000000\",\"0.00055100\"],[\"36351.81000000\",\"0.00110700\"]]}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
         "Content-Length": "361",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 12:59:09 GMT",
+        "Date": "Sat, 05 Jun 2021 15:44:13 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "25",
-        "x-mbx-used-weight-1m": "25",
+        "x-mbx-used-weight": "20",
+        "x-mbx-used-weight-1m": "20",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -34,9 +34,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 a411e1d9cf3f776cc77733eb0d71fb34.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "LHR61-C2",
-        "X-Amz-Cf-Id": "3BF3Nw8yUOApMWEvvWozSMasGc6LzOSEj1UkxD050zX32Myk4sPtIg=="
+        "Via": "1.1 a668b79ea8c4f6f5d611c57b44351ff0.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "DrwMoS2m84Z-edsvjhYz7aw-oZvj-2hn88Hhi2gWYmIoR90DMcyf_g=="
       },
       "status_code": 200,
       "type": "ok"
