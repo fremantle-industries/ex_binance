@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "price=0.01&quantity=10&recvWindow=5000&side=BUY&signature=***&symbol=LTCBTC&timeInForce=FOK&timestamp=1622902671151&type=LIMIT",
+      "body": "price=0.01&quantity=1&recvWindow=5000&side=BUY&signature=***&symbol=LTCBTC&timeInForce=FOK&timestamp=1622907841967&type=LIMIT",
       "headers": {
         "X-MBX-APIKEY": "***"
       },
@@ -12,18 +12,18 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1518,\"orderListId\":-1,\"clientOrderId\":\"EIry4r7BX57wjHZMad671L\",\"transactTime\":1622902671991,\"price\":\"0.01000000\",\"origQty\":\"10.00000000\",\"executedQty\":\"0.00000000\",\"cummulativeQuoteQty\":\"0.00000000\",\"status\":\"EXPIRED\",\"timeInForce\":\"FOK\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"fills\":[]}",
+      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1653,\"orderListId\":-1,\"clientOrderId\":\"gpRn30r83UiNEXVQiZ5vwl\",\"transactTime\":1622907842953,\"price\":\"0.01000000\",\"origQty\":\"1.00000000\",\"executedQty\":\"1.00000000\",\"cummulativeQuoteQty\":\"0.01000000\",\"status\":\"FILLED\",\"timeInForce\":\"FOK\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"fills\":[{\"price\":\"0.01000000\",\"qty\":\"1.00000000\",\"commission\":\"0.00000000\",\"commissionAsset\":\"LTC\",\"tradeId\":442}]}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "306",
+        "Content-Length": "409",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 14:17:51 GMT",
+        "Date": "Sat, 05 Jun 2021 15:44:02 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "5",
-        "x-mbx-used-weight-1m": "5",
-        "x-mbx-order-count-1d": "52",
+        "x-mbx-used-weight": "2",
+        "x-mbx-used-weight-1m": "2",
+        "x-mbx-order-count-1d": "102",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -37,9 +37,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 2b298af2bb6f21ab0dee9e764d8bcb29.cloudfront.net (CloudFront)",
+        "Via": "1.1 a668b79ea8c4f6f5d611c57b44351ff0.cloudfront.net (CloudFront)",
         "X-Amz-Cf-Pop": "AMS54-C1",
-        "X-Amz-Cf-Id": "rrbpza_H-I5rO8JTGwHy2RL-40i_tab34E-DLV514EFRrO1ScKxvnA=="
+        "X-Amz-Cf-Id": "XceUMSbTUciib7bWZa3H6uiRMkzmrI2r2SVmXpA8zS_4odsI6l7aIw=="
       },
       "status_code": 200,
       "type": "ok"

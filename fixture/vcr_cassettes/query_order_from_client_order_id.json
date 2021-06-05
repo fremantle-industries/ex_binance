@@ -8,16 +8,16 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://testnet.binance.vision/api/v3/order?origClientOrderId=TEST-ORDER-FOR-QUERY&recvWindow=5000&signature=***&symbol=LTCBTC&timestamp=1622897706363"
+      "url": "https://testnet.binance.vision/api/v3/order?origClientOrderId=TEST-ORDER-FOR-QUERY&recvWindow=5000&signature=***&symbol=LTCBTC&timestamp=1622907989679"
     },
     "response": {
       "binary": false,
-      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1423,\"orderListId\":-1,\"clientOrderId\":\"TEST-ORDER-FOR-QUERY\",\"price\":\"0.01000000\",\"origQty\":\"0.10000000\",\"executedQty\":\"0.00000000\",\"cummulativeQuoteQty\":\"0.00000000\",\"status\":\"NEW\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"stopPrice\":\"0.00000000\",\"icebergQty\":\"0.00000000\",\"time\":1622896783573,\"updateTime\":1622896783573,\"isWorking\":true,\"origQuoteOrderQty\":\"0.00000000\"}",
+      "body": "{\"symbol\":\"LTCBTC\",\"orderId\":1654,\"orderListId\":-1,\"clientOrderId\":\"TEST-ORDER-FOR-QUERY\",\"price\":\"0.01000000\",\"origQty\":\"0.10000000\",\"executedQty\":\"0.10000000\",\"cummulativeQuoteQty\":\"0.00100000\",\"status\":\"FILLED\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"stopPrice\":\"0.00000000\",\"icebergQty\":\"0.00000000\",\"time\":1622907844042,\"updateTime\":1622907844042,\"isWorking\":true,\"origQuoteOrderQty\":\"0.00000000\"}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "408",
+        "Content-Length": "411",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 12:55:07 GMT",
+        "Date": "Sat, 05 Jun 2021 15:46:31 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
         "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
@@ -36,9 +36,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 aa001e3127bb5bd7bbc48bc4fef44b79.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "ZRH50-C1",
-        "X-Amz-Cf-Id": "SYAjBycWYSXshLs9EP69BjFo3K2lSdD40kL15IMIHlYq_ireMCgqWQ=="
+        "Via": "1.1 b619a16f6f8fe9793bf642d2a8434284.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "AMS54-C1",
+        "X-Amz-Cf-Id": "tBfdIRY1IDqYiqkKV0ne0bz64yujgpEbmvJ5mYOJma8eCPnm6x7oPw=="
       },
       "status_code": 200,
       "type": "ok"

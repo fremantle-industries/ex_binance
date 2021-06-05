@@ -9,12 +9,14 @@ defmodule ExBinance.Rest.CancelAllOrders do
   @type error_reason :: {:not_found, error_msg} | HTTPClient.shared_errors()
 
   @path "/api/v3/openOrders"
-  @receiving_window 1000
+  @receiving_window 5000
 
   @spec cancel_all_orders(symbol, credentials) :: {:ok, response} | {:error, error_reason}
   def cancel_all_orders(symbol, credentials) do
     params = %{
-      symbol: symbol
+      symbol: symbol,
+      timestamp: Timestamp.now(),
+      recv_window: @receiving_window
     }
 
     @path
