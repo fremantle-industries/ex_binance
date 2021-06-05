@@ -12,12 +12,14 @@
       "binary": false,
       "body": "{}",
       "headers": {
-        "Date": "Fri, 23 Mar 2018 05:35:13 GMT",
-        "Content-Type": "application/json",
-        "Transfer-Encoding": "chunked",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "2",
         "Connection": "keep-alive",
+        "Date": "Sat, 05 Jun 2021 09:00:15 GMT",
         "Server": "nginx",
-        "Vary": "Accept-Encoding",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "20",
+        "x-mbx-used-weight-1m": "20",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -27,7 +29,13 @@
         "X-WebKit-CSP": "default-src 'self'",
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
-        "Expires": "0"
+        "Expires": "0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 19a079cfe5fbc38f063a9e46b60b00a7.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "LHR61-C2",
+        "X-Amz-Cf-Id": "yu7XJIyrxogoMp_l_DqE7FF_ZBTjx7-bot5NbyKVUvlee-DdpyVeWw=="
       },
       "status_code": 200,
       "type": "ok"
