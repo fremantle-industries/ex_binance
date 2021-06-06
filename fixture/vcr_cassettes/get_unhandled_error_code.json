@@ -8,7 +8,7 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://api.binance.com/api/v1/time?"
+      "url": "https://testnet.binance.vision/api/v1/time?"
     },
     "response": {
       "binary": false,

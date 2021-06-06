@@ -1,6 +1,7 @@
 import Config
 
 config :ex_binance,
+  domain: System.get_env("BINANCE_API_DOMAIN"),
   api_key: System.get_env("BINANCE_API_KEY"),
   secret_key: System.get_env("BINANCE_API_SECRET")
 

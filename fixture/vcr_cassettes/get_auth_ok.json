@@ -8,7 +8,7 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://api.binance.com/api/v3/account?recvWindow=5000&signature=***&timestamp=1527290557371"
+      "url": "https://testnet.binance.vision/api/v3/account?recvWindow=5000&signature=***&timestamp=1527290557371"
     },
     "response": {
       "binary": false,

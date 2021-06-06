@@ -8,7 +8,7 @@
       "method": "delete",
       "options": [],
       "request_body": "",
-      "url": "https://api.binance.com/api/v3/order"
+      "url": "https://testnet.binance.vision/api/v3/order"
     },
     "response": {
       "binary": false,
