@@ -18,47 +18,33 @@ defmodule ExBinance.Private.CancelAllOrdersTest do
 
         assert [
                  %ExBinance.Rest.Responses.CancelOrderResponse{
-                    client_order_id: "KIrygabcq9UbzzfzmsxjfB",
-                    cummulative_quote_qty: "0.00000000",
-                    executed_qty: "0.00000000",
-                    order_id: 1430,
-                    orig_client_order_id: "Rssxi0i3iqata5mLCaUU49",
-                    orig_qty: "0.10000000",
-                    price: "0.01000000",
+                    client_order_id: "pXLV6Hz6mprAcVYpVMTGgx",
+                    cummulative_quote_qty: "0.000000",
+                    executed_qty: "0.000000",
+                    order_id: 13,
+                    orig_client_order_id: "A3EF2HCwxgZPFMrfwbgrhv",
+                    orig_qty: "0.178622",
+                    price: "0.090430",
                     side: "BUY",
                     status: "CANCELED",
-                    symbol: "LTCBTC",
+                    symbol: "BTCUSDT",
                     time_in_force: "GTC",
                     type: "LIMIT"
                  },
                  %ExBinance.Rest.Responses.CancelOrderResponse{
-                    client_order_id: "KIrygabcq9UbzzfzmsxjfB",
-                    cummulative_quote_qty: "0.00000000",
-                    executed_qty: "0.00000000",
-                    order_id: 1423,
-                    orig_client_order_id: "TEST-ORDER-FOR-QUERY",
-                    orig_qty: "0.10000000",
-                    price: "0.01000000",
+                    client_order_id: "pXLV6Hz6mprAcVYpVMTGgx",
+                    cummulative_quote_qty: "0.000000",
+                    executed_qty: "0.000000",
+                    order_id: 11,
+                    orig_client_order_id: "E6APeyTJvkMvLMYMqu1KQ4",
+                    orig_qty: "0.178622",
+                    price: "0.089853",
                     side: "BUY",
                     status: "CANCELED",
-                    symbol: "LTCBTC",
+                    symbol: "BTCUSDT",
                     time_in_force: "GTC",
                     type: "LIMIT"
-                 },
-                 %ExBinance.Rest.Responses.CancelOrderResponse{
-                  client_order_id: "KIrygabcq9UbzzfzmsxjfB",
-                  cummulative_quote_qty: "0.00015010",
-                  executed_qty: "0.01501000",
-                  order_id: 1421,
-                  orig_client_order_id: "TEST-ORDER",
-                  orig_qty: "0.10000000",
-                  price: "0.01000000",
-                  side: "BUY",
-                  status: "CANCELED",
-                  symbol: "LTCBTC",
-                  time_in_force: "GTC",
-                  type: "LIMIT"
-               }
+                 }
                ] = response
       end
     end
