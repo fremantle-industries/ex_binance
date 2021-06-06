@@ -1,9 +1,9 @@
 import Config
 
 config :ex_binance,
-  domain: System.get_env("BINANCE_API_DOMAIN"),
-  api_key: System.get_env("BINANCE_API_KEY"),
-  secret_key: System.get_env("BINANCE_API_SECRET")
+  domain: System.fetch_env!("BINANCE_API_DOMAIN"),
+  api_key: System.fetch_env!("BINANCE_API_KEY"),
+  secret_key: System.fetch_env!("BINANCE_API_SECRET")
 
 config :exvcr,
   filter_request_headers: [
