@@ -12,13 +12,13 @@ jobs:
 
     strategy:
       matrix:
-        otp: [21.x, 22.x, 23.x]
-        elixir: [1.9.x, 1.10.x, 1.11.x]
+        otp: [22.x, 23.x, 24.x]
+        elixir: [1.11.x, 1.12.x]
 
     steps:
       - uses: actions/checkout@v2.3.4
 
-      - uses: erlef/setup-elixir@v1.7
+      - uses: erlef/setup-elixir@v1.7.2
         with:
           otp-version: ${{matrix.otp}}
           elixir-version: ${{matrix.elixir}}
@@ -30,10 +30,10 @@ jobs:
             deps
             _build/dev
             _build/test
-          key: elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
+          key: elixir-cache-5goNLzIDwagspnM2-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
           restore-keys: |
-            elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-
-            elixir-cache-${{secrets.CACHE_VERSION}}-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-
+            elixir-cache-5goNLzIDwagspnM2-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-
+            elixir-cache-5goNLzIDwagspnM2-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-
 
       - name: Install Dependencies
         run: mix deps.get
@@ -42,6 +42,7 @@ jobs:
         env:
           MIX_ENV: test
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          BINANCE_API_KEY: ${{secrets.BINANCE_API_KEY}}
-          BINANCE_API_SECRET: ${{secrets.BINANCE_API_SECRET}}
+          BINANCE_API_DOMAIN: testnet.binance.vision
+          BINANCE_API_KEY: abc123
+          BINANCE_API_SECRET: abc123
         run: mix coveralls.github

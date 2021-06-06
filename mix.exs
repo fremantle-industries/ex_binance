@@ -5,7 +5,7 @@ defmodule ExBinance.MixProject do
     [
       app: :ex_binance,
       version: "0.0.8",
-      elixir: "~> 1.10",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
