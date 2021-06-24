@@ -1,0 +1,44 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.binance.vision/api/v3/klines?interval=1m&limit=1&symbol=BTCUSDT"
+    },
+    "response": {
+      "binary": false,
+      "body": "[[1624559520000,\"34970.90000000\",\"35047.03000000\",\"34800.01000000\",\"35047.03000000\",\"0.41947200\",1624559579999,\"14686.87819470\",37,\"0.41391700\",\"14492.85555020\",\"0\"]]",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "166",
+        "Connection": "keep-alive",
+        "Date": "Thu, 24 Jun 2021 18:32:42 GMT",
+        "Server": "nginx",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
+        "x-mbx-used-weight": "3",
+        "x-mbx-used-weight-1m": "3",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Xss-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'self'",
+        "X-Content-Security-Policy": "default-src 'self'",
+        "X-WebKit-CSP": "default-src 'self'",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 1437ff2cfbc1ea8c7a36e6b0ce6e935a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "ZRH50-C1",
+        "X-Amz-Cf-Id": "LrF2FY1xDr4aXxnYrzDl906yiAoMqEMoU6u1PeqAniO-UIJLOqJUOg=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
