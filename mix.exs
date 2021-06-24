@@ -29,6 +29,7 @@ defmodule ExBinance.MixProject do
       {:httpoison, "~> 1.0"},
       {:jason, "~> 1.1"},
       {:exconstructor, "~> 1.1"},
+      {:hackney, "~> 1.17.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},

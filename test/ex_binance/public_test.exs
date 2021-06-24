@@ -146,4 +146,82 @@ defmodule ExBinance.PublicTest do
       end
     end
   end
+
+  describe ".klines" do
+    test "returns klines for a given symbol and interval" do
+      use_cassette "klines_symbol_interval_ok" do
+        {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m")
+
+        assert [%ExBinance.Kline{
+                close: "33917.88000000",
+                close_time: 1624437779999,
+                high: "33967.84000000",
+                low: "33907.26000000",
+                number_of_trades: 819,
+                open: "33934.23000000",
+                open_time: 1624437720000,
+                quote_asset_volume: "1326782.78806766",
+                taker_buy_base_asset_volume: "18.81895600",
+                taker_buy_quote_asset_volume: "638656.91317571",
+                volume: "39.09696400"
+              } | _tail] = klines
+
+        assert length(klines) == 500
+      end
+    end
+
+    test "returns klines for a given symbol, interval and limit" do
+      use_cassette "klines_symbol_interval_limit_ok" do
+        {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m", 1, nil, nil)
+
+        assert [%ExBinance.Kline{
+                  close: "33291.63000000",
+                  close_time: 1624526459999,
+                  high: "33317.07000000",
+                  low: "33286.37000000",
+                  number_of_trades: 630,
+                  open: "33317.07000000",
+                  open_time: 1624526400000,
+                  quote_asset_volume: "818758.30209440",
+                  taker_buy_base_asset_volume: "13.91765200",
+                  taker_buy_quote_asset_volume: "463402.02216807",
+                  volume: "24.58993100"
+                }] = klines
+      end
+    end
+
+    test "returns klines for a given symbol, interval, start time, end time and limit" do
+      use_cassette "klines_symbol_interval_with_time_and_limit_ok" do
+        {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m", 2, 1624438800000, 1624440000000)
+        assert klines == [
+          %ExBinance.Kline{
+            close: "33795.64000000",
+            close_time: 1624438859999,
+            high: "33799.97000000",
+            low: "33650.21000000",
+            number_of_trades: 4047,
+            open: "33735.05000000",
+            open_time: 1624438800000,
+            quote_asset_volume: "9094866.73914483",
+            taker_buy_base_asset_volume: "149.27507000",
+            taker_buy_quote_asset_volume: "5032479.42881688",
+            volume: "269.78425300"
+            },
+          %ExBinance.Kline{
+            close: "33843.45000000",
+            close_time: 1624438919999,
+            high: "33849.60000000",
+            low: "33781.33000000",
+            number_of_trades: 1768,
+            open: "33792.75000000",
+            open_time: 1624438860000,
+            quote_asset_volume: "3165722.49728791",
+            taker_buy_base_asset_volume: "56.57355600",
+            taker_buy_quote_asset_volume: "1913252.43441276",
+            volume: "93.61144800"
+          }
+        ]
+      end
+    end
+  end
 end
