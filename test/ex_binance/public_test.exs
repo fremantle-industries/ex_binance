@@ -153,18 +153,18 @@ defmodule ExBinance.PublicTest do
         {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m")
 
         assert [%ExBinance.Kline{
-                close: "33917.88000000",
-                close_time: 1624437779999,
-                high: "33967.84000000",
-                low: "33907.26000000",
-                number_of_trades: 819,
-                open: "33934.23000000",
-                open_time: 1624437720000,
-                quote_asset_volume: "1326782.78806766",
-                taker_buy_base_asset_volume: "18.81895600",
-                taker_buy_quote_asset_volume: "638656.91317571",
-                volume: "39.09696400"
-              } | _tail] = klines
+                  close: "33336.52000000",
+                  close_time: 1624529639999,
+                  high: "33336.52000000",
+                  low: "33325.49000000",
+                  number_of_trades: 28,
+                  open: "33334.78000000",
+                  open_time: 1624529580000,
+                  quote_asset_volume: "10243.20474104",
+                  taker_buy_base_asset_volume: "0.24031200",
+                  taker_buy_quote_asset_volume: "8009.99722824",
+                  volume: "0.30731600"
+                } | _tail] = klines
 
         assert length(klines) == 500
       end
@@ -175,17 +175,17 @@ defmodule ExBinance.PublicTest do
         {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m", 1, nil, nil)
 
         assert [%ExBinance.Kline{
-                  close: "33291.63000000",
-                  close_time: 1624526459999,
-                  high: "33317.07000000",
-                  low: "33286.37000000",
-                  number_of_trades: 630,
-                  open: "33317.07000000",
-                  open_time: 1624526400000,
-                  quote_asset_volume: "818758.30209440",
-                  taker_buy_base_asset_volume: "13.91765200",
-                  taker_buy_quote_asset_volume: "463402.02216807",
-                  volume: "24.58993100"
+                  close: "35047.03000000",
+                  close_time: 1624559579999,
+                  high: "35047.03000000",
+                  low: "34800.01000000",
+                  number_of_trades: 37,
+                  open: "34970.90000000",
+                  open_time: 1624559520000,
+                  quote_asset_volume: "14686.87819470",
+                  taker_buy_base_asset_volume: "0.41391700",
+                  taker_buy_quote_asset_volume: "14492.85555020",
+                  volume: "0.41947200"
                 }] = klines
       end
     end
@@ -195,30 +195,30 @@ defmodule ExBinance.PublicTest do
         {:ok, klines} = ExBinance.Public.klines("BTCUSDT", "1m", 2, 1624438800000, 1624440000000)
         assert klines == [
           %ExBinance.Kline{
-            close: "33795.64000000",
+            close: "33784.38000000",
             close_time: 1624438859999,
-            high: "33799.97000000",
-            low: "33650.21000000",
-            number_of_trades: 4047,
-            open: "33735.05000000",
+            high: "33800.00000000",
+            low: "33666.01000000",
+            number_of_trades: 52,
+            open: "33800.00000000",
             open_time: 1624438800000,
-            quote_asset_volume: "9094866.73914483",
-            taker_buy_base_asset_volume: "149.27507000",
-            taker_buy_quote_asset_volume: "5032479.42881688",
-            volume: "269.78425300"
-            },
+            quote_asset_volume: "21900.06475101",
+            taker_buy_base_asset_volume: "0.45358400",
+            taker_buy_quote_asset_volume: "15296.35728097",
+            volume: "0.64906000"
+          },
           %ExBinance.Kline{
-            close: "33843.45000000",
+            close: "33845.40000000",
             close_time: 1624438919999,
-            high: "33849.60000000",
-            low: "33781.33000000",
-            number_of_trades: 1768,
-            open: "33792.75000000",
+            high: "33845.40000000",
+            low: "33785.58000000",
+            number_of_trades: 35,
+            open: "33789.26000000",
             open_time: 1624438860000,
-            quote_asset_volume: "3165722.49728791",
-            taker_buy_base_asset_volume: "56.57355600",
-            taker_buy_quote_asset_volume: "1913252.43441276",
-            volume: "93.61144800"
+            quote_asset_volume: "16527.62739828",
+            taker_buy_base_asset_volume: "0.48791700",
+            taker_buy_quote_asset_volume: "16498.06501578",
+            volume: "0.48879200"
           }
         ]
       end

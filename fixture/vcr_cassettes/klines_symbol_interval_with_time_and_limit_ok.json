@@ -6,19 +6,19 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://api.binance.com/api/v3/klines?endTime=1624440000000&interval=1m&limit=2&startTime=1624438800000&symbol=BTCUSDT"
+      "url": "https://testnet.binance.vision/api/v3/klines?endTime=1624440000000&interval=1m&limit=2&startTime=1624438800000&symbol=BTCUSDT"
     },
     "response": {
       "binary": false,
-      "body": "[[1624438800000,\"33735.05000000\",\"33799.97000000\",\"33650.21000000\",\"33795.64000000\",\"269.78425300\",1624438859999,\"9094866.73914483\",4047,\"149.27507000\",\"5032479.42881688\",\"0\"],[1624438860000,\"33792.75000000\",\"33849.60000000\",\"33781.33000000\",\"33843.45000000\",\"93.61144800\",1624438919999,\"3165722.49728791\",1768,\"56.57355600\",\"1913252.43441276\",\"0\"]]",
+      "body": "[[1624438800000,\"33800.00000000\",\"33800.00000000\",\"33666.01000000\",\"33784.38000000\",\"0.64906000\",1624438859999,\"21900.06475101\",52,\"0.45358400\",\"15296.35728097\",\"0\"],[1624438860000,\"33789.26000000\",\"33845.40000000\",\"33785.58000000\",\"33845.40000000\",\"0.48879200\",1624438919999,\"16527.62739828\",35,\"0.48791700\",\"16498.06501578\",\"0\"]]",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "349",
+        "Content-Length": "331",
         "Connection": "keep-alive",
-        "Date": "Wed, 23 Jun 2021 18:58:47 GMT",
+        "Date": "Thu, 24 Jun 2021 18:32:37 GMT",
         "Server": "nginx",
         "Vary": "Accept-Encoding",
-        "x-mbx-uuid": "7671ff9d-8652-49a9-824b-fb7870022cfc",
+        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
         "x-mbx-used-weight": "1",
         "x-mbx-used-weight-1m": "1",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
@@ -34,9 +34,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 19a2321144b2039159d43efbb8b9691f.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "LHR61-C1",
-        "X-Amz-Cf-Id": "dqq7zJ1VMs1M5ejBTPw2L1SqsvCJ8TaOwI5vX-8FKJqOCgM1rOT5jg=="
+        "Via": "1.1 1437ff2cfbc1ea8c7a36e6b0ce6e935a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "ZRH50-C1",
+        "X-Amz-Cf-Id": "lgzm2fvUwFdq9eqYqkwha14oWkLsc3KKTk9gRoGNXtzgx-TXDVmBiQ=="
       },
       "status_code": 200,
       "type": "ok"
