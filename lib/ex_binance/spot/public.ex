@@ -1,4 +1,4 @@
-defmodule ExBinance.Public do
+defmodule ExBinance.Spot.Public do
   import ExBinance.Rest.HTTPClient, only: [get: 2]
 
   def ping, do: get("/api/v1/ping", %{})
@@ -28,10 +28,12 @@ defmodule ExBinance.Public do
   end
 
   def klines(symbol, interval, limit \\ nil, start_time \\ nil, end_time \\ nil) do
-    params = %{symbol: symbol, interval: interval}
-          |> maybe_put(:limit, limit)
-          |> maybe_put(:startTime, start_time)
-          |> maybe_put(:endTime, end_time)
+    params =
+      %{symbol: symbol, interval: interval}
+      |> maybe_put(:limit, limit)
+      |> maybe_put(:startTime, start_time)
+      |> maybe_put(:endTime, end_time)
+
     with {:ok, data} <- get("/api/v3/klines", params) do
       {:ok, Enum.map(data, fn x -> ExBinance.Kline.new(build_kline_object(x)) end)}
     end

@@ -1,5 +1,6 @@
-defmodule ExBinance.Rest.CancelOrder do
-  alias ExBinance.Rest.{HTTPClient, Responses}
+defmodule ExBinance.Spot.Private.CancelOrder do
+  alias ExBinance.Rest.HTTPClient
+  alias ExBinance.Spot.Private.Responses
   alias ExBinance.Timestamp
 
   @type symbol :: String.t()
@@ -17,11 +18,11 @@ defmodule ExBinance.Rest.CancelOrder do
           {:ok, response} | {:error, error_reason}
   def cancel_order_by_order_id(symbol, order_id, credentials) do
     params = %{
-                symbol: symbol,
-                orderId: order_id,
-                timestamp: Timestamp.now(),
-                recv_window: @receiving_window
-              }
+      symbol: symbol,
+      orderId: order_id,
+      timestamp: Timestamp.now(),
+      recv_window: @receiving_window
+    }
 
     @path
     |> HTTPClient.delete(params, credentials)
@@ -32,22 +33,26 @@ defmodule ExBinance.Rest.CancelOrder do
           {:ok, response} | {:error, error_reason}
   def cancel_order_by_client_order_id(symbol, client_order_id, credentials) do
     params = %{
-                symbol: symbol,
-                origClientOrderId: client_order_id,
-                timestamp: Timestamp.now(),
-                recv_window: @receiving_window
-              }
+      symbol: symbol,
+      origClientOrderId: client_order_id,
+      timestamp: Timestamp.now(),
+      recv_window: @receiving_window
+    }
 
     @path
     |> HTTPClient.delete(params, credentials)
     |> parse_response()
   end
 
-  defp parse_response({:ok, response}), do: {:ok, Responses.CancelOrderResponse.new(response)}
+  defp parse_response({:ok, response}) do
+    {:ok, Responses.CancelOrderResponse.new(response)}
+  end
 
   defp parse_response({:error, {:binance_error, %{"code" => -2011, "msg" => msg}}}) do
     {:error, {:not_found, msg}}
   end
 
-  defp parse_response({:error, _} = error), do: error
+  defp parse_response({:error, _} = error) do
+    error
+  end
 end

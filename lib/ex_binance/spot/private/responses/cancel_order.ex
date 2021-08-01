@@ -1,20 +1,20 @@
-defmodule ExBinance.Rest.Responses.CreateOrderResponse do
+defmodule ExBinance.Spot.Private.Responses.CancelOrderResponse do
   @type t :: %__MODULE__{}
 
-  defstruct ~w[
+  defstruct ~w(
     client_order_id
+    cummulative_quote_qty
     executed_qty
     order_id
+    orig_client_order_id
     orig_qty
     price
     side
     status
     symbol
     time_in_force
-    transact_time
     type
-    fills
-  ]a
+  )a
 
   use ExConstructor
 end

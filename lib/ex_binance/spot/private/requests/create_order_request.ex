@@ -1,4 +1,4 @@
-defmodule ExBinance.Rest.Requests.CreateOrderRequest do
+defmodule ExBinance.Spot.Private.Requests.CreateOrderRequest do
   @type t :: %__MODULE__{}
 
   defstruct ~w[

@@ -1,4 +1,4 @@
-defmodule ExBinance.Private.AccountTest do
+defmodule ExBinance.Spot.Private.AccountTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
@@ -13,7 +13,7 @@ defmodule ExBinance.Private.AccountTest do
 
   test ".account returns an ok tuple with the account" do
     use_cassette "private/account_ok" do
-      assert {:ok, %ExBinance.Account{} = account} = ExBinance.Private.account(@credentials)
+      assert {:ok, %ExBinance.Account{} = account} = ExBinance.Spot.Private.account(@credentials)
       assert account.update_time != nil
     end
   end

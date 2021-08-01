@@ -1,4 +1,4 @@
-defmodule ExBinance.Private.CreateOrderTest do
+defmodule ExBinance.Spot.Private.CreateOrderTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Mock
@@ -24,12 +24,14 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "GTC")
 
         use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
-          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
-                   ExBinance.Private.create_order(request, @credentials)
+          assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
+                   ExBinance.Spot.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
+
           assert response.executed_qty ==
-            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
+                   if(response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000")
+
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
@@ -46,12 +48,14 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "FOK")
 
         use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
-          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
-                   ExBinance.Private.create_order(request, @credentials)
+          assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
+                   ExBinance.Spot.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
+
           assert response.executed_qty ==
-            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
+                   if(response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000")
+
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
@@ -68,12 +72,14 @@ defmodule ExBinance.Private.CreateOrderTest do
         request = build_request(@side, "IOC")
 
         use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
-          assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = response} =
-                   ExBinance.Private.create_order(request, @credentials)
+          assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
+                   ExBinance.Spot.Private.create_order(request, @credentials)
 
           assert response.client_order_id != nil
+
           assert response.executed_qty ==
-            if response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000"
+                   if(response.status == "FILLED", do: "#{@quantity}.00000000", else: "0.00000000")
+
           assert response.order_id != nil
           assert response.orig_qty != nil
           assert response.price != nil
@@ -92,7 +98,7 @@ defmodule ExBinance.Private.CreateOrderTest do
 
         with_mock HTTPoison,
           request: fn :post, _url, _body, _headers -> error end do
-          assert ExBinance.Private.create_order(request, @credentials) ==
+          assert ExBinance.Spot.Private.create_order(request, @credentials) ==
                    {:error, :timeout}
         end
       end
@@ -100,7 +106,7 @@ defmodule ExBinance.Private.CreateOrderTest do
   end)
 
   defp build_request(side, time_in_force, client_order_id \\ nil) do
-    %ExBinance.Rest.Requests.CreateOrderRequest{
+    %ExBinance.Spot.Private.Requests.CreateOrderRequest{
       new_client_order_id: client_order_id,
       symbol: "LTCBTC",
       side: side,

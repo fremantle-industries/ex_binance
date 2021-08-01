@@ -1,4 +1,4 @@
-defmodule ExBinance.Rest.Responses.QueryOrderResponse do
+defmodule ExBinance.Spot.Private.Responses.QueryOrderResponse do
   @type t :: %__MODULE__{}
 
   defstruct ~w(

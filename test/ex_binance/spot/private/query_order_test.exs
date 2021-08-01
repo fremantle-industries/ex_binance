@@ -1,4 +1,4 @@
-defmodule ExBinance.Private.QueryOrderTest do
+defmodule ExBinance.Spot.Private.QueryOrderTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
@@ -15,25 +15,27 @@ defmodule ExBinance.Private.QueryOrderTest do
 
   describe ".query_order" do
     test "can query an order from client order id" do
-      new_order_req = %ExBinance.Rest.Requests.CreateOrderRequest{
-                        new_client_order_id: @client_order_id,
-                        symbol: "LTCBTC",
-                        side: "BUY",
-                        type: "LIMIT",
-                        quantity: 0.1,
-                        price: 0.01,
-                        time_in_force: "GTC",
-                        timestamp: ExBinance.Timestamp.now()
-                      }
-
+      new_order_req = %ExBinance.Spot.Private.Requests.CreateOrderRequest{
+        new_client_order_id: @client_order_id,
+        symbol: "LTCBTC",
+        side: "BUY",
+        type: "LIMIT",
+        quantity: 0.1,
+        price: 0.01,
+        time_in_force: "GTC",
+        timestamp: ExBinance.Timestamp.now()
+      }
 
       use_cassette "create_order_before_querying_it" do
-        assert {:ok, %ExBinance.Rest.Responses.CreateOrderResponse{} = create_order_response} =
-                  ExBinance.Private.create_order(new_order_req, @credentials)
+        assert {:ok,
+                %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = create_order_response} =
+                 ExBinance.Spot.Private.create_order(new_order_req, @credentials)
 
         assert create_order_response.client_order_id == @client_order_id
+
         assert create_order_response.executed_qty ==
-          if create_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000"
+                 if(create_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000")
+
         assert create_order_response.order_id != nil
         assert create_order_response.orig_qty != nil
         assert create_order_response.price != nil
@@ -47,16 +49,19 @@ defmodule ExBinance.Private.QueryOrderTest do
 
       # Now we query the order we just created
       use_cassette "query_order_from_client_order_id" do
-        assert {:ok, %ExBinance.Rest.Responses.QueryOrderResponse{} = query_order_response} =
-          ExBinance.Private.query_order_by_client_order_id(
-            "LTCBTC",
-            @client_order_id,
-            @credentials
-          )
+        assert {:ok,
+                %ExBinance.Spot.Private.Responses.QueryOrderResponse{} = query_order_response} =
+                 ExBinance.Spot.Private.query_order_by_client_order_id(
+                   "LTCBTC",
+                   @client_order_id,
+                   @credentials
+                 )
 
         assert query_order_response.client_order_id == @client_order_id
+
         assert query_order_response.executed_qty ==
-          if query_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000"
+                 if(query_order_response.status == "FILLED", do: "0.10000000", else: "0.00000000")
+
         assert query_order_response.order_id != nil
         assert query_order_response.orig_qty == "0.10000000"
         assert query_order_response.price != nil
@@ -77,16 +82,16 @@ defmodule ExBinance.Private.QueryOrderTest do
 
     test "can query an order" do
       use_cassette "query_order_from_order_id" do
-        assert {:ok, %ExBinance.Rest.Responses.QueryOrderResponse{} = query_order_response} =
-          ExBinance.Private.query_order_by_order_id(
-            "LTCBTC",
-            1512,
-            @credentials
-          )
+        assert {:ok,
+                %ExBinance.Spot.Private.Responses.QueryOrderResponse{} = query_order_response} =
+                 ExBinance.Spot.Private.query_order_by_order_id(
+                   "LTCBTC",
+                   1512,
+                   @credentials
+                 )
 
         assert query_order_response.order_id == 1512
       end
     end
-
   end
 end

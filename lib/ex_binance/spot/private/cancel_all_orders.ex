@@ -1,5 +1,6 @@
-defmodule ExBinance.Rest.CancelAllOrders do
-  alias ExBinance.Rest.{HTTPClient, Responses}
+defmodule ExBinance.Spot.Private.CancelAllOrders do
+  alias ExBinance.Rest.HTTPClient
+  alias ExBinance.Spot.Private.Responses
   alias ExBinance.Timestamp
 
   @type symbol :: String.t()
@@ -24,16 +25,24 @@ defmodule ExBinance.Rest.CancelAllOrders do
     |> parse_response()
   end
 
-  defp parse_response({:ok, response}),
-    do:
-      {:ok,
-       Enum.reduce(response, [], fn
-         %{"orderId" => _} = r, acc -> [Responses.CancelOrderResponse.new(r) | acc]
-         _, acc -> acc
-       end)}
+  defp parse_response({:ok, response}) do
+    result =
+      Enum.reduce(response, [], fn
+        %{"orderId" => _} = r, acc ->
+          [Responses.CancelOrderResponse.new(r) | acc]
 
-  defp parse_response({:error, {:binance_error, %{"code" => -2011, "msg" => msg}}}),
-    do: {:error, {:not_found, msg}}
+        _, acc ->
+          acc
+      end)
 
-  defp parse_response({:error, _} = error), do: error
+    {:ok, result}
+  end
+
+  defp parse_response({:error, {:binance_error, %{"code" => -2011, "msg" => msg}}}) do
+    {:error, {:not_found, msg}}
+  end
+
+  defp parse_response({:error, _} = error) do
+    error
+  end
 end

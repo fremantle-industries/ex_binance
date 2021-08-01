@@ -1,5 +1,6 @@
-defmodule ExBinance.Rest.CreateOrder do
-  alias ExBinance.Rest.{HTTPClient, Requests, Responses}
+defmodule ExBinance.Spot.Private.CreateOrder do
+  alias ExBinance.Rest.{HTTPClient}
+  alias ExBinance.Spot.Private.{Requests, Responses}
   alias ExBinance.{Timestamp, Credentials}
 
   @type request :: Requests.CreateOrderRequest.t()

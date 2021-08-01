@@ -1,4 +1,4 @@
-defmodule ExBinance.Private.CancelOrderTest do
+defmodule ExBinance.Spot.Private.CancelOrderTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
@@ -17,9 +17,9 @@ defmodule ExBinance.Private.CancelOrderTest do
 
       use_cassette "private/cancel_order_by_order_id_ok" do
         assert {:ok, response} =
-                 ExBinance.Private.cancel_order_by_order_id("LTCBTC", order_id, @credentials)
+                 ExBinance.Spot.Private.cancel_order_by_order_id("LTCBTC", order_id, @credentials)
 
-        assert %ExBinance.Rest.Responses.CancelOrderResponse{} = response
+        assert %ExBinance.Spot.Private.Responses.CancelOrderResponse{} = response
         assert response.order_id == order_id
       end
     end
@@ -27,11 +27,10 @@ defmodule ExBinance.Private.CancelOrderTest do
     test "returns an error tuple when the order id can't be found" do
       use_cassette "private/cancel_order_by_order_id_error_not_found" do
         assert {:error, {:not_found, msg}} =
-                 ExBinance.Private.cancel_order_by_order_id("LTCBTC", "12345", @credentials)
+                 ExBinance.Spot.Private.cancel_order_by_order_id("LTCBTC", "12345", @credentials)
 
         assert msg == "Unknown order sent."
       end
     end
-
   end
 end
