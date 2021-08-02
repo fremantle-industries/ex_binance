@@ -7,13 +7,12 @@ defmodule ExBinance.Spot.Private.CreateOrder do
   @type response :: Responses.CreateOrderResponse.t()
   @type params :: map
   @type credentials :: Credentials.t()
+  @type error_reason :: {:new_order_rejected, String.t()} | term
 
   @path "/api/v3/order"
   @receiving_window 5000
 
-  @spec create_order(request | params, credentials) ::
-          {:ok, response}
-          | {:error, {:new_order_rejected, String.t()} | term}
+  @spec create_order(request | params, credentials) :: {:ok, response} | {:error, error_reason}
   def create_order(%Requests.CreateOrderRequest{} = params, credentials) do
     params
     |> Map.from_struct()
