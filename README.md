@@ -7,8 +7,7 @@ Binance API Client for Elixir
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `binance` to your list of dependencies in `mix.exs`:
+Add the `ex_binance` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
