@@ -12,7 +12,7 @@ Add the `ex_binance` package to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_binance, "~> 0.0.9"}
+    {:ex_binance, "~> 0.0.10"}
   ]
 end
 ```
