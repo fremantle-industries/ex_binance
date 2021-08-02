@@ -15,7 +15,7 @@ defmodule ExBinance.Spot.Private.CancelOrderTest do
     test "returns an ok tuple with the response" do
       order_id = 1512
 
-      use_cassette "private/cancel_order_by_order_id_ok" do
+      use_cassette "spot/private/cancel_order_by_order_id_ok" do
         assert {:ok, response} =
                  ExBinance.Spot.Private.cancel_order_by_order_id("LTCBTC", order_id, @credentials)
 
@@ -25,7 +25,7 @@ defmodule ExBinance.Spot.Private.CancelOrderTest do
     end
 
     test "returns an error tuple when the order id can't be found" do
-      use_cassette "private/cancel_order_by_order_id_error_not_found" do
+      use_cassette "spot/private/cancel_order_by_order_id_error_not_found" do
         assert {:error, {:not_found, msg}} =
                  ExBinance.Spot.Private.cancel_order_by_order_id("LTCBTC", "12345", @credentials)
 

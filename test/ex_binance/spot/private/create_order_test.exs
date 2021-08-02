@@ -23,7 +23,7 @@ defmodule ExBinance.Spot.Private.CreateOrderTest do
       test "can create a good till cancel order" do
         request = build_request(@side, "GTC")
 
-        use_cassette "create_order_limit_#{@side}_good_til_cancel_success" do
+        use_cassette "spot/private/create_order_limit_#{@side}_good_til_cancel_success" do
           assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Spot.Private.create_order(request, @credentials)
 
@@ -47,7 +47,7 @@ defmodule ExBinance.Spot.Private.CreateOrderTest do
       test "can create a fill or kill order" do
         request = build_request(@side, "FOK")
 
-        use_cassette "create_order_limit_#{@side}_fill_or_kill_success" do
+        use_cassette "spot/private/create_order_limit_#{@side}_fill_or_kill_success" do
           assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Spot.Private.create_order(request, @credentials)
 
@@ -71,7 +71,7 @@ defmodule ExBinance.Spot.Private.CreateOrderTest do
       test "can create an immediate or cancel order" do
         request = build_request(@side, "IOC")
 
-        use_cassette "create_order_limit_#{@side}_immediate_or_cancel_success" do
+        use_cassette "spot/private/create_order_limit_#{@side}_immediate_or_cancel_success" do
           assert {:ok, %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = response} =
                    ExBinance.Spot.Private.create_order(request, @credentials)
 

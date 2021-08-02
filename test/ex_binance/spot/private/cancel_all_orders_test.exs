@@ -14,7 +14,7 @@ defmodule ExBinance.Spot.Private.CancelAllOrdersTest do
 
   describe ".cancel_all_orders_for_a_pair" do
     test "returns an ok tuple with the response" do
-      use_cassette "private/cancel_all_orders_for_a_pair" do
+      use_cassette "spot/private/cancel_all_orders_for_a_pair" do
         assert {:ok, response} = Private.cancel_all_orders("LTCBTC", @credentials)
         assert [order_response_1, order_response_2] = response
 

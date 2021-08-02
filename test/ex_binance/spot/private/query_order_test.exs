@@ -26,7 +26,7 @@ defmodule ExBinance.Spot.Private.QueryOrderTest do
         timestamp: ExBinance.Timestamp.now()
       }
 
-      use_cassette "create_order_before_querying_it" do
+      use_cassette "spot/private/create_order_before_querying_it" do
         assert {:ok,
                 %ExBinance.Spot.Private.Responses.CreateOrderResponse{} = create_order_response} =
                  ExBinance.Spot.Private.create_order(new_order_req, @credentials)
@@ -48,7 +48,7 @@ defmodule ExBinance.Spot.Private.QueryOrderTest do
       end
 
       # Now we query the order we just created
-      use_cassette "query_order_from_client_order_id" do
+      use_cassette "spot/private/query_order_from_client_order_id" do
         assert {:ok,
                 %ExBinance.Spot.Private.Responses.QueryOrderResponse{} = query_order_response} =
                  ExBinance.Spot.Private.query_order_by_client_order_id(
@@ -81,7 +81,7 @@ defmodule ExBinance.Spot.Private.QueryOrderTest do
     end
 
     test "can query an order" do
-      use_cassette "query_order_from_order_id" do
+      use_cassette "spot/private/query_order_from_order_id" do
         assert {:ok,
                 %ExBinance.Spot.Private.Responses.QueryOrderResponse{} = query_order_response} =
                  ExBinance.Spot.Private.query_order_by_order_id(
