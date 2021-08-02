@@ -1,16 +1,7 @@
 defmodule ExBinance.Spot.Private do
-  import ExBinance.Rest.HTTPClient, only: [get: 3]
   alias __MODULE__
 
-  @type credentials :: ExBinance.Credentials.t()
-  @type shared_errors :: ExBinance.Rest.HTTPClient.shared_errors()
-
-  @spec account(credentials) :: {:ok, term} | {:error, shared_errors}
-  def account(credentials) do
-    with {:ok, data} <- get("/api/v3/account", %{}, credentials) do
-      {:ok, ExBinance.Account.new(data)}
-    end
-  end
+  defdelegate account(credentials), to: Private.Account
 
   defdelegate create_order(
                 symbol,

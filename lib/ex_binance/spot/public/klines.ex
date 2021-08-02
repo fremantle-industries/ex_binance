@@ -1,5 +1,5 @@
 defmodule ExBinance.Spot.Public.Klines do
-  import ExBinance.Rest.HTTPClient, only: [get: 2]
+  import ExBinance.Rest.SpotClient, only: [get: 2]
 
   def klines(symbol, interval, limit \\ nil, start_time \\ nil, end_time \\ nil) do
     params =

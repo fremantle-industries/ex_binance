@@ -1,5 +1,5 @@
 defmodule ExBinance.Spot.Private.CreateOrder do
-  alias ExBinance.Rest.{HTTPClient}
+  import ExBinance.Rest.SpotClient, only: [post: 3]
   alias ExBinance.Spot.Private.{Requests, Responses}
   alias ExBinance.{Timestamp, Credentials}
 
@@ -22,7 +22,7 @@ defmodule ExBinance.Spot.Private.CreateOrder do
 
   def create_order(params, credentials) when is_map(params) do
     @path
-    |> HTTPClient.post(params, credentials)
+    |> post(params, credentials)
     |> parse_response()
   end
 

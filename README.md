@@ -204,8 +204,8 @@ end
 
 #### Market Data Endpoints
 
-- [ ] `GET /fapi/v1/ping`
-- [ ] `GET /fapi/v1/time`
+- [x] `GET /fapi/v1/ping`
+- [x] `GET /fapi/v1/time`
 - [ ] `GET /fapi/v1/exchangeInfo`
 - [ ] `GET /fapi/v1/depth`
 - [ ] `GET /fapi/v1/trades`

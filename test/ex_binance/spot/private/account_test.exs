@@ -13,7 +13,8 @@ defmodule ExBinance.Spot.Private.AccountTest do
 
   test ".account returns an ok tuple with the account" do
     use_cassette "spot/private/account_ok" do
-      assert {:ok, %ExBinance.Account{} = account} = ExBinance.Spot.Private.account(@credentials)
+      assert {:ok, account} = ExBinance.Spot.Private.account(@credentials)
+      assert %ExBinance.Account{} = account
       assert account.update_time != nil
     end
   end

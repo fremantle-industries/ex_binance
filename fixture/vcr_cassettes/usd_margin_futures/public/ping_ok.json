@@ -1,0 +1,42 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.binancefuture.com/fapi/v1/ping?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "2",
+        "Connection": "keep-alive",
+        "Date": "Mon, 02 Aug 2021 21:42:42 GMT",
+        "Server": "Bengine",
+        "x-response-time": "0ms",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "*",
+        "Content-Security-Policy": "default-src 'self'",
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "expires": "0",
+        "pragma": "no-cache",
+        "strict-transport-security": "max-age=31536000; includeSubdomains",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-xss-protection": "1; mode=block",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 8dbfaf7df256a75768461d934659b6b3.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "HIO50-C1",
+        "X-Amz-Cf-Id": "hNKx6sGLIXgdEzXe-kWwS7y0CR7PrAbqrohN1Rz4ZaFlIrZtK1xrpg=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

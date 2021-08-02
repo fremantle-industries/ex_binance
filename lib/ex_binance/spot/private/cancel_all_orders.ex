@@ -1,5 +1,6 @@
 defmodule ExBinance.Spot.Private.CancelAllOrders do
-  alias ExBinance.Rest.HTTPClient
+  import ExBinance.Rest.SpotClient, only: [delete: 3]
+  alias ExBinance.Rest.SpotClient
   alias ExBinance.Spot.Private.Responses
   alias ExBinance.Timestamp
 
@@ -7,7 +8,7 @@ defmodule ExBinance.Spot.Private.CancelAllOrders do
   @type credentials :: ExBinance.Credentials.t()
   @type response :: Responses.CancelOrderResponse.t()
   @type error_msg :: String.t()
-  @type error_reason :: {:not_found, error_msg} | HTTPClient.shared_errors()
+  @type error_reason :: {:not_found, error_msg} | SpotClient.shared_errors()
 
   @path "/api/v3/openOrders"
   @receiving_window 5000
@@ -21,7 +22,7 @@ defmodule ExBinance.Spot.Private.CancelAllOrders do
     }
 
     @path
-    |> HTTPClient.delete(params, credentials)
+    |> delete(params, credentials)
     |> parse_response()
   end
 

@@ -1,5 +1,5 @@
 defmodule ExBinance.Spot.Public.TickerPrices do
-  import ExBinance.Rest.HTTPClient, only: [get: 2]
+  import ExBinance.Rest.SpotClient, only: [get: 2]
 
   def ticker_prices do
     with {:ok, data} <- get("/api/v3/ticker/price", %{}) do

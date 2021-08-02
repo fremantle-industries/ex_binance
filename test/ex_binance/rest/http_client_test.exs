@@ -2,6 +2,7 @@ defmodule ExBinance.Rest.HTTPClientTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Mock
+  alias ExBinance.Rest.HTTPClient
 
   setup_all do
     HTTPoison.start()
@@ -10,7 +11,8 @@ defmodule ExBinance.Rest.HTTPClientTest do
   describe ".get" do
     test "returns an ok tuple with decoded json data" do
       use_cassette "http_client/get_ok" do
-        assert {:ok, %{"serverTime" => _}} = ExBinance.Rest.HTTPClient.get("/api/v1/time", %{})
+        assert {:ok, %{"serverTime" => _}} =
+                 HTTPClient.get(HTTPClient.spot_endpoint(), "/api/v1/time", %{})
       end
     end
 
@@ -21,7 +23,9 @@ defmodule ExBinance.Rest.HTTPClientTest do
       test "#{error_reason} returns an error tuple" do
         with_mock HTTPoison,
           get: fn _url, _headers -> {:error, %HTTPoison.Error{reason: @error_reason}} end do
-          assert {:error, reason} = ExBinance.Rest.HTTPClient.get("/api/v1/time", %{})
+          assert {:error, reason} =
+                   HTTPClient.get(HTTPClient.spot_endpoint(), "/api/v1/time", %{})
+
           assert reason == @error_reason
         end
       end
@@ -35,7 +39,8 @@ defmodule ExBinance.Rest.HTTPClientTest do
 
   test ".get returns an ok tuple with decoded json data for endpoints that require auth" do
     use_cassette "http_client/get_auth_ok" do
-      assert {:ok, data} = ExBinance.Rest.HTTPClient.get("/api/v3/account", %{}, @credentials)
+      assert {:ok, data} =
+               HTTPClient.get(HTTPClient.spot_endpoint(), "/api/v3/account", %{}, @credentials)
 
       assert %{"canTrade" => _} = data
     end
@@ -52,7 +57,12 @@ defmodule ExBinance.Rest.HTTPClientTest do
         }
 
         assert {:error, :receive_window} =
-                 ExBinance.Rest.HTTPClient.delete("/api/v3/order", params, @credentials)
+                 HTTPClient.delete(
+                   HTTPClient.spot_endpoint(),
+                   "/api/v3/order",
+                   params,
+                   @credentials
+                 )
       end
     end
   end

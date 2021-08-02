@@ -1,5 +1,6 @@
 defmodule ExBinance.Spot.Private.QueryOrder do
-  alias ExBinance.Rest.HTTPClient
+  import ExBinance.Rest.SpotClient, only: [get: 3]
+  alias ExBinance.Rest.SpotClient
   alias ExBinance.Spot.Private.Responses
   alias ExBinance.{Timestamp, Credentials}
 
@@ -9,7 +10,7 @@ defmodule ExBinance.Spot.Private.QueryOrder do
   @type credentials :: Credentials.t()
   @type response :: Responses.QueryOrderResponse.t()
   @type error_msg :: String.t()
-  @type error_reason :: {:not_found, error_msg} | HTTPClient.shared_errors()
+  @type error_reason :: {:not_found, error_msg} | SpotClient.shared_errors()
 
   @path "/api/v3/order"
   @receiving_window 5000
@@ -25,7 +26,7 @@ defmodule ExBinance.Spot.Private.QueryOrder do
     }
 
     @path
-    |> HTTPClient.get(params, credentials)
+    |> get(params, credentials)
     |> parse_response()
   end
 
@@ -40,7 +41,7 @@ defmodule ExBinance.Spot.Private.QueryOrder do
     }
 
     @path
-    |> HTTPClient.get(params, credentials)
+    |> get(params, credentials)
     |> parse_response()
   end
 
