@@ -107,7 +107,66 @@ end
 
 #### Spot Account/Trade
 
+- [ ] `POST /api/v3/order/test`
+- [x] `POST /api/v3/order`
+- [x] `DELETE /api/v3/order`
+- [x] `DELETE /api/v3/openOrders`
+- [x] `GET /api/v3/order`
+- [ ] `GET /api/v3/openOrders`
+- [ ] `GET /api/v3/allOrders`
+- [ ] `POST /api/v3/order/oco`
+- [ ] `DELETE /api/v3/orderList`
+- [ ] `GET /api/v3/orderList`
+- [ ] `GET /api/v3/allOrderList`
+- [ ] `GET /api/v3/openOrderList`
+- [ ] `GET /api/v3/account`
+- [ ] `GET /api/v3/myTrades`
+
 #### Margin Account/Trade
+
+- [ ] `POST /sapi/v1/margin/transfer`
+- [ ] `POST /sapi/v1/margin/loan`
+- [ ] `POST /sapi/v1/margin/repay`
+- [ ] `GET /sapi/v1/margin/asset`
+- [ ] `GET /sapi/v1/margin/pair`
+- [ ] `GET /sapi/v1/margin/allAssets`
+- [ ] `GET /sapi/v1/margin/allPairs`
+- [ ] `GET /sapi/v1/margin/priceIndex`
+- [ ] `POST /sapi/v1/margin/order`
+- [ ] `DELETE /sapi/v1/margin/order`
+- [ ] `DELETE /sapi/v1/margin/openOrders`
+- [ ] `GET /sapi/v1/margin/transfer`
+- [ ] `GET /sapi/v1/margin/loan`
+- [ ] `GET /sapi/v1/margin/repay`
+- [ ] `GET /sapi/v1/margin/interestHistory`
+- [ ] `GET /sapi/v1/margin/forcedLiquidationRec`
+- [ ] `GET /sapi/v1/margin/account`
+- [ ] `GET /sapi/v1/margin/order`
+- [ ] `GET /sapi/v1/margin/openOrders`
+- [ ] `GET /sapi/v1/margin/allOrders`
+- [ ] `GET /sapi/v1/margin/myTrades`
+- [ ] `GET /sapi/v1/margin/maxBorrowable`
+- [ ] `GET /sapi/v1/margin/maxTransferable`
+- [ ] `POST /sapi/v1/margin/isolated/transfer`
+- [ ] `GET /sapi/v1/margin/isolated/transfer`
+- [ ] `GET /sapi/v1/margin/isolated/account`
+- [ ] `GET /sapi/v1/margin/isolated/pair`
+- [ ] `GET /sapi/v1/margin/isolated/allPairs`
+- [ ] `POST /sapi/v1/bnbBurn`
+- [ ] `GET /sapi/v1/bnbBurn`
+- [ ] `GET /sapi/v1/margin/interestRateHistory`
+
+#### User Data Stream Endpoints
+
+- [ ] `POST /api/v3/userDataStream`
+- [ ] `PUT /api/v3/userDataStream`
+- [ ] `DELETE /api/v3/userDataStream`
+- [ ] `POST /sapi/v1/userDataStream`
+- [ ] `PUT /sapi/v1/userDataStream`
+- [ ] `DELETE /sapi/v1/userDataStream`
+- [ ] `POST /sapi/v1/userDataStream/isolated`
+- [ ] `PUT /sapi/v1/userDataStream/isolated`
+- [ ] `DELETE /sapi/v1/userDataStream/isolated`
 
 #### Savings Endpoints
 
