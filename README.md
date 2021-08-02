@@ -17,6 +17,21 @@ def deps do
 end
 ```
 
+Configure your Binance API credentials and optionally assign your spot, usd
+margin & coin margin futures endpoints. By default production endpoints are used
+but you it can be useful to override these for testing.
+
+```elixir
+config :ex_binance,
+  api_key: System.fetch_env!("BINANCE_API_KEY"),
+  secret_key: System.fetch_env!("BINANCE_API_SECRET")
+
+config :ex_binance,
+  spot_domain: System.fetch_env!("BINANCE_API_SPOT_DOMAIN"),
+  usd_margin_futures_domain: System.fetch_env!("BINANCE_API_USD_MARGIN_FUTURES_DOMAIN"),
+  coin_margin_futures_domain: System.fetch_env!("BINANCE_API_COIN_MARGIN_FUTURES_DOMAIN"),
+```
+
 ## Requirements
 
 - Erlang 22+
