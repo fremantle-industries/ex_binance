@@ -152,7 +152,7 @@ defmodule ExBinance.Spot.PublicTest do
 
   describe ".klines" do
     test "returns klines for a given symbol and interval" do
-      use_cassette "klines_symbol_interval_ok" do
+      use_cassette "spot/public/klines_symbol_interval_ok" do
         {:ok, klines} = Public.klines("BTCUSDT", "1m")
 
         assert [
@@ -177,7 +177,7 @@ defmodule ExBinance.Spot.PublicTest do
     end
 
     test "returns klines for a given symbol, interval and limit" do
-      use_cassette "klines_symbol_interval_limit_ok" do
+      use_cassette "spot/public/klines_symbol_interval_limit_ok" do
         {:ok, klines} = Public.klines("BTCUSDT", "1m", 1, nil, nil)
 
         assert [
@@ -199,13 +199,13 @@ defmodule ExBinance.Spot.PublicTest do
     end
 
     test "returns klines for a given symbol, interval, start time, end time and limit" do
-      use_cassette "klines_symbol_interval_with_time_and_limit_ok" do
+      use_cassette "spot/public/klines_symbol_interval_with_time_and_limit_ok" do
         assert {:ok, klines} =
                  Public.klines("BTCUSDT", "1m", 2, 1_624_438_800_000, 1_624_440_000_000)
 
         assert [kline_1, kline_2] = klines
 
-        assert kline_1 = %ExBinance.Kline{
+        assert kline_1 == %ExBinance.Kline{
                  close: "33784.38000000",
                  close_time: 1_624_438_859_999,
                  high: "33800.00000000",
