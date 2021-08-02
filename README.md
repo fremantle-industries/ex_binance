@@ -170,7 +170,35 @@ end
 
 #### Savings Endpoints
 
+- [ ] `GET /sapi/v1/lending/daily/product/list`
+- [ ] `GET /sapi/v1/lending/daily/userLeftQuota`
+- [ ] `POST /sapi/v1/lending/daily/purchase`
+- [ ] `GET /sapi/v1/lending/daily/userRedemptionQuota`
+- [ ] `POST /sapi/v1/lending/daily/redeem`
+- [ ] `GET /sapi/v1/lending/daily/token/position`
+- [ ] `GET /sapi/v1/lending/project/list`
+- [ ] `POST /sapi/v1/lending/customizedFixed/purchase`
+- [ ] `GET /sapi/v1/lending/project/position/list`
+- [ ] `GET /sapi/v1/lending/union/account`
+- [ ] `GET /sapi/v1/lending/union/purchaseRecord`
+- [ ] `GET /sapi/v1/lending/union/redemptionRecord`
+- [ ] `GET /sapi/v1/lending/union/interestHistory`
+- [ ] `POST /sapi/v1/lending/positionChanged`
+
 #### Mining Endpoints
+
+- [ ] `GET /sapi/v1/mining/pub/algoList`
+- [ ] `GET /sapi/v1/mining/pub/coinList`
+- [ ] `GET /sapi/v1/mining/worker/detail`
+- [ ] `GET /sapi/v1/mining/worker/list`
+- [ ] `GET /sapi/v1/mining/payment/list`
+- [ ] `GET /sapi/v1/mining/payment/other`
+- [ ] `GET /sapi/v1/mining/hash-transfer/config/details/list`
+- [ ] `GET /sapi/v1/mining/hash-transfer/profit/details`
+- [ ] `POST /sapi/v1/mining/hash-transfer/config`
+- [ ] `POST /sapi/v1/mining/hash-transfer/config/cancel`
+- [ ] `GET /sapi/v1/mining/statistics/user/status`
+- [ ] `GET /sapi/v1/mining/statistics/user/list`
 
 ### USD-M Futures
 
