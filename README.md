@@ -206,7 +206,7 @@ end
 
 - [x] `GET /fapi/v1/ping`
 - [x] `GET /fapi/v1/time`
-- [ ] `GET /fapi/v1/exchangeInfo`
+- [x] `GET /fapi/v1/exchangeInfo`
 - [ ] `GET /fapi/v1/depth`
 - [ ] `GET /fapi/v1/trades`
 - [ ] `GET /fapi/v1/historicalTrades`
