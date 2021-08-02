@@ -235,9 +235,9 @@ end
 
 #### Market Data Endpoints
 
-- [ ] `GET /dapi/v1/ping`
-- [ ] `GET /dapi/v1/time`
-- [ ] `GET /dapi/v1/exchangeInfo`
+- [x] `GET /dapi/v1/ping`
+- [x] `GET /dapi/v1/time`
+- [x] `GET /dapi/v1/exchangeInfo`
 - [ ] `GET /dapi/v1/depth`
 - [ ] `GET /dapi/v1/trades`
 - [ ] `GET /dapi/v1/historicalTrades`
