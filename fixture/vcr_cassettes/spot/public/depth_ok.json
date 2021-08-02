@@ -6,20 +6,21 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://testnet.binance.vision/api/v1/time?"
+      "url": "https://testnet.binance.vision/api/v3/depth?limit=5&symbol=BTCUSDT"
     },
     "response": {
       "binary": false,
-      "body": "{\"serverTime\":1622907854162}",
+      "body": "{\"lastUpdateId\":1936020,\"bids\":[[\"34272.99000000\",\"0.00050000\"],[\"34181.13000000\",\"0.00090000\"],[\"34142.49000000\",\"0.00070000\"],[\"26791.12000000\",\"0.01000000\"],[\"10000.00000000\",\"0.45482500\"]],\"asks\":[[\"39739.06000000\",\"0.01258300\"],[\"39750.41000000\",\"0.00151600\"]]}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "28",
+        "Content-Length": "266",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 15:44:14 GMT",
+        "Date": "Mon, 02 Aug 2021 17:45:46 GMT",
         "Server": "nginx",
-        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "21",
-        "x-mbx-used-weight-1m": "21",
+        "Vary": "Accept-Encoding",
+        "x-mbx-uuid": "b2481ad6-f0c5-4184-a2d5-43668f05b317",
+        "x-mbx-used-weight": "12",
+        "x-mbx-used-weight-1m": "12",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -33,9 +34,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 a668b79ea8c4f6f5d611c57b44351ff0.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "AMS54-C1",
-        "X-Amz-Cf-Id": "DfuON-e8LruArTzt-VncFh8ci3iSH3r6KkrDj8-h2sGEVnifKT_KVA=="
+        "Via": "1.1 c3270a6ec9acbf35e35962d1054f78d5.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "HIO50-C2",
+        "X-Amz-Cf-Id": "iLcP1qOCSvuDSaNJ4JLYgvqNFzIwFC-pJHiT4EqVgM3uM5hk9ANRzA=="
       },
       "status_code": 200,
       "type": "ok"

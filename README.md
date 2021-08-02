@@ -93,17 +93,17 @@ end
 
 #### Market Data Endpoints
 
-- [ ] `GET /api/v3/ping`
-- [ ] `GET /api/v3/time`
-- [ ] `GET /api/v3/exchangeInfo`
-- [ ] `GET /api/v3/depth`
+- [x] `GET /api/v3/ping`
+- [x] `GET /api/v3/time`
+- [x] `GET /api/v3/exchangeInfo`
+- [x] `GET /api/v3/depth`
 - [ ] `GET /api/v3/trades`
 - [ ] `GET /api/v3/historicalTrades`
 - [ ] `GET /api/v3/aggTrades`
 - [ ] `GET /api/v3/klines`
 - [ ] `GET /api/v3/avgPrice`
 - [ ] `GET /api/v3/ticker/24hr`
-- [ ] `GET /api/v3/ticker/price`
+- [x] `GET /api/v3/ticker/price`
 - [ ] `GET /api/v3/ticker/bookTicker`
 
 #### Spot Account/Trade

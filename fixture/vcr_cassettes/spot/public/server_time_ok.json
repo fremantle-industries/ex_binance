@@ -6,20 +6,20 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://testnet.binance.vision/api/v1/ping?"
+      "url": "https://testnet.binance.vision/api/v3/time?"
     },
     "response": {
       "binary": false,
-      "body": "{}",
+      "body": "{\"serverTime\":1627926538813}",
       "headers": {
         "Content-Type": "application/json;charset=UTF-8",
-        "Content-Length": "2",
+        "Content-Length": "28",
         "Connection": "keep-alive",
-        "Date": "Sat, 05 Jun 2021 15:44:10 GMT",
+        "Date": "Mon, 02 Aug 2021 17:48:58 GMT",
         "Server": "nginx",
-        "x-mbx-uuid": "36439ccd-17c4-4960-bbd3-d5fefb5c391a",
-        "x-mbx-used-weight": "17",
-        "x-mbx-used-weight-1m": "17",
+        "x-mbx-uuid": "b2481ad6-f0c5-4184-a2d5-43668f05b317",
+        "x-mbx-used-weight": "2",
+        "x-mbx-used-weight-1m": "2",
         "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
         "X-Frame-Options": "SAMEORIGIN",
         "X-Xss-Protection": "1; mode=block",
@@ -33,9 +33,9 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 a668b79ea8c4f6f5d611c57b44351ff0.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "AMS54-C1",
-        "X-Amz-Cf-Id": "lml6AKP37qaGFDdcRwjbXanhl0slXryXB0S_BGbp0txEvMLMkTVowA=="
+        "Via": "1.1 c3270a6ec9acbf35e35962d1054f78d5.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "HIO50-C2",
+        "X-Amz-Cf-Id": "AGISkWJBoIkfC_PIe56EQ89_s4PWbAvECqWs4uMbYK4vpQZS4kBxqw=="
       },
       "status_code": 200,
       "type": "ok"

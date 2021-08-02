@@ -1,0 +1,45 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.binance.vision/api/v3/ticker/price?"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"symbol\":\"BNBBUSD\",\"price\":\"266.00000000\"},{\"symbol\":\"BTCBUSD\",\"price\":\"35000.00000000\"},{\"symbol\":\"ETHBUSD\",\"price\":\"2999.99000000\"},{\"symbol\":\"LTCBUSD\",\"price\":\"136.79000000\"},{\"symbol\":\"TRXBUSD\",\"price\":\"0.06010000\"},{\"symbol\":\"XRPBUSD\",\"price\":\"0.72070000\"},{\"symbol\":\"BNBUSDT\",\"price\":\"335.76000000\"},{\"symbol\":\"BTCUSDT\",\"price\":\"39802.68000000\"},{\"symbol\":\"ETHUSDT\",\"price\":\"1993.67000000\"},{\"symbol\":\"LTCUSDT\",\"price\":\"140.00000000\"},{\"symbol\":\"TRXUSDT\",\"price\":\"0.06008000\"},{\"symbol\":\"XRPUSDT\",\"price\":\"0.75000000\"},{\"symbol\":\"BNBBTC\",\"price\":\"0.00840700\"},{\"symbol\":\"ETHBTC\",\"price\":\"0.05059500\"},{\"symbol\":\"LTCBTC\",\"price\":\"0.00354800\"},{\"symbol\":\"TRXBTC\",\"price\":\"0.00000156\"},{\"symbol\":\"XRPBTC\",\"price\":\"0.00001871\"},{\"symbol\":\"LTCBNB\",\"price\":\"0.44290000\"},{\"symbol\":\"TRXBNB\",\"price\":\"0.00019460\"},{\"symbol\":\"XRPBNB\",\"price\":\"0.00233300\"}]",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "855",
+        "Connection": "keep-alive",
+        "Date": "Mon, 02 Aug 2021 17:42:40 GMT",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "x-mbx-uuid": "07e06b9a-8a30-4b81-a8e7-02bb3452ef16",
+        "x-mbx-used-weight": "4",
+        "x-mbx-used-weight-1m": "4",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Xss-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'self'",
+        "X-Content-Security-Policy": "default-src 'self'",
+        "X-WebKit-CSP": "default-src 'self'",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 a847181d425b7fc57e81eb3c800bfdf2.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "SEA19-C2",
+        "X-Amz-Cf-Id": "H0MbLyZLM0kOj-qEyUTxu3B49l6aEsDXlPg_VnnM3JBm9KzHJK_9XA=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

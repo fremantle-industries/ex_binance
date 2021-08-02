@@ -1,28 +1,33 @@
 defmodule ExBinance.Spot.Public do
   import ExBinance.Rest.HTTPClient, only: [get: 2]
 
-  def ping, do: get("/api/v1/ping", %{})
+  def ping, do: get("/api/v3/ping", %{})
 
   def server_time do
-    with {:ok, %{"serverTime" => time}} <- get("/api/v1/time", %{}) do
+    with {:ok, %{"serverTime" => time}} <- get("/api/v3/time", %{}) do
       {:ok, time}
     end
   end
 
   def exchange_info do
-    with {:ok, data} <- get("/api/v1/exchangeInfo", %{}) do
+    with {:ok, data} <- get("/api/v3/exchangeInfo", %{}) do
       {:ok, ExBinance.ExchangeInfo.new(data)}
     end
   end
 
-  def all_prices do
-    with {:ok, data} <- get("/api/v1/ticker/allPrices", %{}) do
+  def ticker_prices do
+    with {:ok, data} <- get("/api/v3/ticker/price", %{}) do
       {:ok, Enum.map(data, &ExBinance.SymbolPrice.new(&1))}
     end
   end
 
+  @deprecated "Use ExBinance.Spot.Public.ticker_prices/0 instead."
+  def all_prices do
+    ticker_prices()
+  end
+
   def depth(symbol, limit) do
-    with {:ok, data} <- get("/api/v1/depth", %{symbol: symbol, limit: limit}) do
+    with {:ok, data} <- get("/api/v3/depth", %{symbol: symbol, limit: limit}) do
       {:ok, ExBinance.OrderBook.new(data)}
     end
   end

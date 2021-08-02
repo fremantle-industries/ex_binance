@@ -8,20 +8,20 @@ defmodule ExBinance.Spot.PublicTest do
   end
 
   test ".ping returns an empty map" do
-    use_cassette "ping_ok" do
+    use_cassette "spot/public/ping_ok" do
       assert Public.ping() == {:ok, %{}}
     end
   end
 
   test ".server_time success return an ok, time tuple" do
-    use_cassette "get_server_time_ok" do
+    use_cassette "spot/public/server_time_ok" do
       {:ok, server_time} = Public.server_time()
-      assert server_time > 1_521_781_361_467
+      assert server_time > 0
     end
   end
 
   test ".exchange_info success returns the trading rules and symbol information" do
-    use_cassette "get_exchange_info_ok" do
+    use_cassette "spot/public/get_exchange_info_ok" do
       assert {:ok, %ExBinance.ExchangeInfo{} = info} = Public.exchange_info()
       assert info.timezone == "UTC"
       assert info.server_time != nil
@@ -32,6 +32,12 @@ defmodule ExBinance.Spot.PublicTest do
                  "limit" => 1200,
                  "rateLimitType" => "REQUEST_WEIGHT",
                  "intervalNum" => 1
+               },
+               %{
+                 "interval" => "SECOND",
+                 "limit" => 50,
+                 "rateLimitType" => "ORDERS",
+                 "intervalNum" => 10
                },
                %{
                  "interval" => "DAY",
@@ -115,9 +121,9 @@ defmodule ExBinance.Spot.PublicTest do
     end
   end
 
-  test ".all_prices returns a list of prices for every symbol" do
-    use_cassette "get_all_prices_ok" do
-      assert {:ok, symbol_prices} = Public.all_prices()
+  test ".ticker_prices returns a list of prices for every symbol" do
+    use_cassette "spot/public/ticker_prices_ok" do
+      assert {:ok, symbol_prices} = Public.ticker_prices()
 
       assert Enum.find(symbol_prices, fn x -> x.symbol == "ETHBTC" end) != nil
 
@@ -127,32 +133,18 @@ defmodule ExBinance.Spot.PublicTest do
 
   describe ".get_depth" do
     test "returns the bids & asks up to the given depth" do
-      use_cassette "get_depth_ok" do
-        assert Public.depth("BTCUSDT", 5) == {
-                 :ok,
-                 %ExBinance.OrderBook{
-                   asks: [
-                     ["36207.00000000", "0.00122500"],
-                     ["36243.41000000", "0.02166500"],
-                     ["36279.00000000", "0.00066600"],
-                     ["36300.00000000", "0.00055100"],
-                     ["36351.81000000", "0.00110700"]
-                   ],
-                   bids: [
-                     ["36125.92000000", "0.01384100"],
-                     ["36100.00000000", "0.00055300"],
-                     ["36000.00000000", "0.00055500"],
-                     ["35918.85000000", "0.00297200"],
-                     ["35900.00000000", "0.00055600"]
-                   ],
-                   last_update_id: 929_038
-                 }
-               }
+      use_cassette "spot/public/depth_ok" do
+        assert {:ok, order_book} = Public.depth("BTCUSDT", 5)
+
+        assert %ExBinance.OrderBook{} = order_book
+        assert Enum.any?(order_book.asks)
+        assert Enum.any?(order_book.bids)
+        assert order_book.last_update_id != nil
       end
     end
 
     test "returns an error tuple when the symbol doesn't exist" do
-      use_cassette "get_depth_error" do
+      use_cassette "spot/public/depth_error" do
         assert Public.depth("IDONTEXIST", 1000) == {:error, :bad_symbol}
       end
     end
