@@ -1,65 +1,17 @@
 defmodule ExBinance.Spot.Public do
-  import ExBinance.Rest.HTTPClient, only: [get: 2]
+  alias __MODULE__
 
-  def ping, do: get("/api/v3/ping", %{})
+  defdelegate ping, to: Public.Ping
 
-  def server_time do
-    with {:ok, %{"serverTime" => time}} <- get("/api/v3/time", %{}) do
-      {:ok, time}
-    end
-  end
+  defdelegate server_time, to: Public.ServerTime
 
-  def exchange_info do
-    with {:ok, data} <- get("/api/v3/exchangeInfo", %{}) do
-      {:ok, ExBinance.ExchangeInfo.new(data)}
-    end
-  end
+  defdelegate exchange_info, to: Public.ExchangeInfo
 
-  def ticker_prices do
-    with {:ok, data} <- get("/api/v3/ticker/price", %{}) do
-      {:ok, Enum.map(data, &ExBinance.SymbolPrice.new(&1))}
-    end
-  end
+  defdelegate ticker_prices, to: Public.TickerPrices
+  defdelegate all_prices, to: Public.TickerPrices
 
-  @deprecated "Use ExBinance.Spot.Public.ticker_prices/0 instead."
-  def all_prices do
-    ticker_prices()
-  end
+  defdelegate depth(symbol, limit), to: Public.Depth
 
-  def depth(symbol, limit) do
-    with {:ok, data} <- get("/api/v3/depth", %{symbol: symbol, limit: limit}) do
-      {:ok, ExBinance.OrderBook.new(data)}
-    end
-  end
-
-  def klines(symbol, interval, limit \\ nil, start_time \\ nil, end_time \\ nil) do
-    params =
-      %{symbol: symbol, interval: interval}
-      |> maybe_put(:limit, limit)
-      |> maybe_put(:startTime, start_time)
-      |> maybe_put(:endTime, end_time)
-
-    with {:ok, data} <- get("/api/v3/klines", params) do
-      {:ok, Enum.map(data, fn x -> ExBinance.Kline.new(build_kline_object(x)) end)}
-    end
-  end
-
-  defp maybe_put(map, _key, nil), do: map
-  defp maybe_put(map, key, value), do: Map.put(map, key, value)
-
-  defp build_kline_object(kline_data) do
-    %{
-      :open_time => Enum.at(kline_data, 0),
-      :open => Enum.at(kline_data, 1),
-      :high => Enum.at(kline_data, 2),
-      :low => Enum.at(kline_data, 3),
-      :close => Enum.at(kline_data, 4),
-      :volume => Enum.at(kline_data, 5),
-      :close_time => Enum.at(kline_data, 6),
-      :quote_asset_volume => Enum.at(kline_data, 7),
-      :number_of_trades => Enum.at(kline_data, 8),
-      :taker_buy_base_asset_volume => Enum.at(kline_data, 9),
-      :taker_buy_quote_asset_volume => Enum.at(kline_data, 10)
-    }
-  end
+  defdelegate klines(symbol, interval, limit \\ nil, start_time \\ nil, end_time \\ nil),
+    to: Public.Klines
 end
