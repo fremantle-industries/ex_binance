@@ -8,7 +8,6 @@ defmodule ExBinance.Spot.Public do
   defdelegate exchange_info, to: Public.ExchangeInfo
 
   defdelegate ticker_prices, to: Public.TickerPrices
-  defdelegate all_prices, to: Public.TickerPrices
 
   defdelegate depth(symbol, limit), to: Public.Depth
 

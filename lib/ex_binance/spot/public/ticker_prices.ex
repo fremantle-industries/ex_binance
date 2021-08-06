@@ -6,9 +6,4 @@ defmodule ExBinance.Spot.Public.TickerPrices do
       {:ok, Enum.map(data, &ExBinance.SymbolPrice.new(&1))}
     end
   end
-
-  @deprecated "Use ExBinance.Spot.Public.ticker_prices/0 instead."
-  def all_prices do
-    ticker_prices()
-  end
 end
