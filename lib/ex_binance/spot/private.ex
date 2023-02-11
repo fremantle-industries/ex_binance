@@ -26,4 +26,6 @@ defmodule ExBinance.Spot.Private do
 
   defdelegate query_order_by_client_order_id(symbol, client_order_id, credentials),
     to: Private.QueryOrder
+
+  defdelegate historic_trades(symbol, from, credentials, limit), to: Private.Trades
 end

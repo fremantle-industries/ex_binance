@@ -13,4 +13,6 @@ defmodule ExBinance.Spot.Public do
 
   defdelegate klines(symbol, interval, limit \\ nil, start_time \\ nil, end_time \\ nil),
     to: Public.Klines
+
+  defdelegate recent_trades(symbol, limit), to: Public.Trades
 end
