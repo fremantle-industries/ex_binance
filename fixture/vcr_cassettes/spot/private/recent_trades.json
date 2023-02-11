@@ -1,0 +1,45 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.binance.com/api/v3/trades?limit=10&symbol=ETHBTC"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"id\":401634051,\"price\":\"0.07011600\",\"qty\":\"0.30930000\",\"quoteQty\":\"0.02168687\",\"time\":1676129860788,\"isBuyerMaker\":false,\"isBestMatch\":true},{\"id\":401634052,\"price\":\"0.07011600\",\"qty\":\"0.00410000\",\"quoteQty\":\"0.00028747\",\"time\":1676129863922,\"isBuyerMaker\":false,\"isBestMatch\":true},{\"id\":401634053,\"price\":\"0.07011600\",\"qty\":\"0.05370000\",\"quoteQty\":\"0.00376522\",\"time\":1676129868499,\"isBuyerMaker\":false,\"isBestMatch\":true},{\"id\":401634054,\"price\":\"0.07011500\",\"qty\":\"1.14060000\",\"quoteQty\":\"0.07997316\",\"time\":1676129869089,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634055,\"price\":\"0.07011500\",\"qty\":\"1.71090000\",\"quoteQty\":\"0.11995975\",\"time\":1676129869089,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634056,\"price\":\"0.07011500\",\"qty\":\"1.14060000\",\"quoteQty\":\"0.07997316\",\"time\":1676129869089,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634057,\"price\":\"0.07011500\",\"qty\":\"5.68490000\",\"quoteQty\":\"0.39859676\",\"time\":1676129869089,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634058,\"price\":\"0.07011500\",\"qty\":\"0.33210000\",\"quoteQty\":\"0.02328519\",\"time\":1676129869089,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634059,\"price\":\"0.07011500\",\"qty\":\"0.09170000\",\"quoteQty\":\"0.00642954\",\"time\":1676129869404,\"isBuyerMaker\":true,\"isBestMatch\":true},{\"id\":401634060,\"price\":\"0.07011600\",\"qty\":\"0.36980000\",\"quoteQty\":\"0.02592889\",\"time\":1676129877022,\"isBuyerMaker\":false,\"isBestMatch\":true}]",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": "1415",
+        "Connection": "keep-alive",
+        "Date": "Sat, 11 Feb 2023 15:38:11 GMT",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "x-mbx-uuid": "26fa6111-aa63-4bc1-b270-3d427e154859",
+        "x-mbx-used-weight": "1",
+        "x-mbx-used-weight-1m": "1",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Xss-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'self'",
+        "X-Content-Security-Policy": "default-src 'self'",
+        "X-WebKit-CSP": "default-src 'self'",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 b9288402a0a891e0bbaca832ecabae60.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "PRG50-C1",
+        "X-Amz-Cf-Id": "0K59M4z07hwP3n8x1KEotMf4ZcE0ST5ATaucnJs4XQcQ9uGqzggLvQ=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
