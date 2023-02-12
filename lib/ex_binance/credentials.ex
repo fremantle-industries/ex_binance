@@ -10,7 +10,7 @@ defmodule ExBinance.Credentials do
   @doc """
   Generates credentials struct from configuration
   """
-  def from_config() do
+  def from_config do
     api_key = Application.get_env(:ex_binance, :api_key)
     secret_key = Application.get_env(:ex_binance, :secret_key)
     %__MODULE__{api_key: api_key, secret_key: secret_key}
