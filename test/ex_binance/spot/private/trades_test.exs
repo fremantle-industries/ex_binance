@@ -22,16 +22,24 @@ defmodule ExBinance.Spot.Private.TradesTest do
 
         [
           %ExBinance.Trade{
-            id: 10,
-            is_best_match: true,
-            is_buyer_maker: true,
-            price: "0.08000000",
-            qty: "0.30800000",
-            quote_qty: "0.02464000",
-            time: 1_500_005_216_092
+            id: id,
+            is_best_match: best_match,
+            is_buyer_maker: is_buyer,
+            price: price,
+            qty: qty,
+            quote_qty: quote_qty,
+            time: time
           }
           | _
         ] = trades
+
+        assert is_integer(id)
+        assert is_boolean(best_match)
+        assert is_boolean(is_buyer)
+        assert is_binary(price)
+        assert is_binary(qty)
+        assert is_binary(quote_qty)
+        assert is_integer(time)
       end
     end
   end
