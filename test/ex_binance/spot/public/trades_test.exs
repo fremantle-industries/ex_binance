@@ -1,4 +1,4 @@
-defmodule ExBinance.Spot.Private.TradesTest do
+defmodule ExBinance.Spot.Public.TradesTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
